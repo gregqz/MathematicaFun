@@ -1,0 +1,17 @@
+🚥 = 2;
+😟[👨‍💻_, 🐖_, 🐐_] := Integrate[👨‍💻[🎄], {🎄, 🐖, 🐐}];
+🌂☂[🌊_] := Series[🌎*Exp[🌎], {🌎, 🌍, 🌊}];
+🌠 = Normal[🌂☂[🚥]];
+☣ = Function[{🌎, 🌍}, #] & /@ Level[🌠, 1];
+🛀 = {};
+Do[AppendTo[🛀, 
+  😟[Function[🏑, Evaluate[☣[[🌌]][🚥, 🏑]]], 0, 🏁]], {🌌, Length@☣}]
+🍻 = 🛀 /. {List -> Plus};
+🍰 = Evaluate[🍻 /. {🏁 -> #}] &;
+Column[{Framed[
+   Row[{Text@"The Graphed Function: ", 
+     Text[Style[🍰[x], TextAlignment -> Center]]}]], 
+  Plot[🍰[😉], {😉, -5, 5}, 
+   AxesLabel -> {Style["x", 15, FontColor -> Black], 
+     Style["🍰[x]", 15, FontColor -> Black]}, ImageSize -> Full]}, 
+ ItemSize -> {Scaled[.5], Automatic}]
