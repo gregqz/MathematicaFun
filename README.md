@@ -10,3 +10,5 @@ for every .nb file, there is an .nbcode file which contains the human readable m
 * musicTheory.nb is my attempt at putting basic music theroy into practice using mathematica; it doesn't come close to covering all of music theory but should form a solid base for future work
 
 * pendulum.nb is a three dimensional sand pendulum simulation
+
+Every file in this repository is under the Unlicense
