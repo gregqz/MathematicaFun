@@ -1,0 +1,2 @@
+# MathematicaFun
+Mathematica One Shots
