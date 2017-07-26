@@ -1,0 +1,203 @@
+(*l=10;
+numNotes=100;
+op[n_]:=BesselJ[1,n]+BesselY[0,n]
+setOfNoteRules=Rule[#[[1]],#[[2]]]&/@Transpose[{Mod[Range[-2,8],11],{\
+"C","C#","D","E","F","F#","G","G#","A","A#","B"}}];
+f[x_]:={ToString[#[[1]]<>ToString[Ceiling@Mod[Abs[#[[3]]],9]]],Sort[\
+Mod[{#[[2,1]],#[[2,2]]},l],Less]}&/@Transpose[{Mod[x[[All,1]],11]/.\
+setOfNoteRules,Transpose[{N@x[[All,2]],N@x[[All,3]]}],x[[All,4]]}]
+(*Table[Ceiling[x],{n,1,70}]*)
+listOfNumbers = \
+Partition[Table[Ceiling[op[n]*100],{n,1,numNotes*4}],4];
+listOfNotes=f[listOfNumbers]
+Sound[SoundNote[#[[1]],#[[2]]]&/@listOfNotes]*)
+
+(*Converts note string into pitch relative to middle C=0*)
+stringToPitch[string_String] := 
+ Module[{noteValues, noteList, pitch}, 
+  noteValues = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", 
+    "A#", "B"};
+  noteList = 
+   StringCases[
+    string, {RegularExpression["[A-G]#?"], 
+     RegularExpression["-\\d+|\\d+"]}];
+  pitch = Position[noteValues, First[noteList]][[1, 1]] - 1;
+  ((ToExpression[noteList[[2]]] - 4)*12) + pitch]
+pitchToString[pitch_] := 
+ Module[{noteValues, notePitch, noteKeyNum}, 
+  noteValues = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", 
+    "A#", "B"};
+  notePitch = noteValues[[Mod[pitch, 12] + 1]];
+  noteKeyNum = Floor[pitch/12] + 4;
+  notePitch <> ToString[noteKeyNum]
+  ]
+increaseNStep[note_, amount_] := 
+ If[StringQ@note, pitchToString[stringToPitch[note] + amount], 
+  note + amount]
+decreaseNStep[note_, amount_] := 
+ If[StringQ@note, pitchToString[stringToPitch[note] - amount], 
+  note - amount]
+increaseHalfStep[note_] := increaseNStep[note, 1]
+increaseWholeStep[note_] := increaseNStep[note, 2]
+decreaseHalfStep[note_] := decreaseNStep[note, 1]
+decreaseWholeStep[note_] := decreaseNStep[note, 2]
+
+enharmonicFixer[note_] := Module[{halfStepCounts, noteName},
+  If[StringQ@note, , Return@note];
+  noteName = 
+   Characters[note][[1]] <> 
+    StringCases[note, RegularExpression["-\\d+|\\d+"]][[1]];
+  halfStepCounts = 
+   CharacterCounts[note] /@ {"#", "b"} /. _Missing -> 0; 
+  If[halfStepCounts[[1]] > 0, 
+   Return[increaseNStep[noteName, halfStepCounts[[1]]]],];
+  If[halfStepCounts[[2]] > 0, 
+   Return[decreaseNStep[noteName, halfStepCounts[[2]]]],];
+  Return[noteName];
+  ]
+
+intervalFactory[root_, interval_] := 
+ Module[{root0 = enharmonicFixer[root], 
+   pitchNames = CharacterRange["A", "G"], 
+   intervalQualities = {"P", "d", "m", "M", "A"}, intervalNumber, 
+   intervalLetter, perfectNumbers = {1, 4, 5, 8}, majorMinorNumbers, 
+   intervalCheckRules, rootList, newPos, newPitchName, newPosNum, 
+   newNoteNum, alteredNote, numOfHalfSteps},
+  If[StringQ@root0, , root0 = pitchToString[root0]];
+  majorMinorNumbers = Complement[Range[8], perfectNumbers];
+  If[StringLength@interval == 2, , Return[{-999, -999}]];
+  intervalLetter = StringTake[interval, 1];
+  intervalNumber = StringTake[interval, {2, 2}];
+  If[MemberQ[intervalQualities, intervalLetter], , 
+   Return[{-999, -999}]]; 
+  If[StringMatchQ[intervalNumber, NumberString], , 
+   Return[{-999, -999}]];
+  intervalNumber = ToExpression@intervalNumber;
+  If[MemberQ[Range[8], intervalNumber], , Return[{-999, -999}]];
+  intervalCheckRules = 
+   Rule @@@ 
+    Transpose[{intervalQualities, 
+      MemberQ[#, intervalNumber] & /@ {perfectNumbers, Range[2, 8], 
+        majorMinorNumbers, majorMinorNumbers, Range[7]}}];
+  If[intervalLetter /. intervalCheckRules, , Return[{-999, -999}]];
+  alteredNote = "C";
+  alteredNote = 
+   If[MemberQ[perfectNumbers, intervalNumber], 
+    numOfHalfSteps = 
+     intervalNumber /. {1 -> 0, 4 -> 5, 5 -> 7, 8 -> 12}; 
+    increaseNStep[root0, numOfHalfSteps], alteredNote];
+  alteredNote = 
+   If[MemberQ[majorMinorNumbers, intervalNumber], 
+    numOfHalfSteps = 
+     intervalNumber /. {2 -> 2, 3 -> 4, 6 -> 8, 7 -> 11}; 
+    increaseNStep[root0, numOfHalfSteps], alteredNote];
+  alteredNote = 
+   If[intervalLetter == "A", increaseHalfStep[alteredNote], 
+    alteredNote];
+  alteredNote = 
+   If[intervalLetter == "m", decreaseHalfStep[alteredNote], 
+    alteredNote];
+  alteredNote = 
+   If[intervalLetter == "d", 
+    If[MemberQ[perfectNumbers, intervalNumber], 
+     decreaseHalfStep[alteredNote], decreaseWholeStep[alteredNote]], 
+    alteredNote];
+  If[StringQ@root, Return@{root0, alteredNote}, 
+   Return@{stringToPitch@root0, stringToPitch@alteredNote}]
+  ]
+
+triadFactory[root_, intervalOne_, intervalTwo_, stacked_: False] := 
+ Module[{firstStack, secondStack}, 
+  If[stacked, firstStack = intervalFactory[root, intervalOne]; 
+   secondStack = intervalFactory[firstStack[[-1]], intervalTwo]; 
+   Flatten@{firstStack, secondStack[[-1]]}, 
+   Flatten@{intervalFactory[root, intervalOne], 
+     intervalFactory[root, intervalTwo][[-1]]}]]
+
+seventhFactory[root_, intervalOne_, intervalTwo_, intervalThree_, 
+  stacked_: False] := 
+ Module[{firstStack, secondStack, thirdStack}, 
+  If[stacked, firstStack = intervalFactory[root, intervalOne]; 
+   secondStack = intervalFactory[firstStack[[-1]], intervalTwo]; 
+   thirdStack = intervalFactory[secondStack[[-1]], intervalThree]; 
+   Flatten@{firstStack, secondStack[[-1]], thirdStack[[-1]]}, 
+   Flatten@{intervalFactory[root, intervalOne], 
+     intervalFactory[root, intervalTwo][[-1]], 
+     intervalFactory[root, intervalThree][[-1]]}]]
+
+chordFactory[chordRoot_, chord_] := 
+ Module[{chordRoot0, 
+   chordType = {"M", "m", "d", "A", "M7", "m7", "d7", "A7"}, 
+   chordToReturn},
+  If[MemberQ[chordType, chord], , 
+   Return["Not a Supported Chord Type!"]];
+  chordRoot0 = enharmonicFixer[chordRoot0];
+  chordToReturn = "Chord not yet implemented!";
+  chordToReturn = 
+   If[chord == "M", triadFactory[chordRoot, "M3", "P5"], 
+    chordToReturn];
+  chordToReturn = 
+   If[chord == "m", triadFactory[chordRoot, "m3", "P5"], 
+    chordToReturn];
+  chordToReturn = 
+   If[chord == "d", triadFactory[chordRoot, "m3", "d5"], 
+    chordToReturn];
+  chordToReturn = 
+   If[chord == "A", triadFactory[chordRoot, "M3", "A5"], 
+    chordToReturn];
+  chordToReturn = 
+   If[chord == "M7", seventhFactory[chordRoot, "M3", "P5", "M7"], 
+    chordToReturn];
+  chordToReturn = 
+   If[chord == "m7", seventhFactory[chordRoot, "m3", "P5", "m7"], 
+    chordToReturn];
+  chordToReturn = 
+   If[chord == "d7", seventhFactory[chordRoot, "M3", "d5", "d7"], 
+    chordToReturn];
+  chordToReturn = 
+   If[chord == "A7", seventhFactory[chordRoot, "M3", "A5", "M7"], 
+    chordToReturn];
+  chordToReturn
+  ]
+
+invertChord[chord_] := 
+  Flatten@{chord[[2 ;; -1]], intervalFactory[chord[[1]], "P8"][[-1]]};
+invertChordN[chord_, n_] := 
+ Module[{invertedChord = chord, n0 = n}, 
+  Do[invertedChord = invertChord[invertedChord], {n}]; invertedChord]
+
+scaleFactory[root_, scale_] := 
+ Module[{scaleType = {"m", "M", "C"}, fullScale = {}, scale0, 
+   noteCursor}, 
+  If[MemberQ[scaleType, scale], , "Not Supported Scale Type"];
+  scale0 = 
+   scale /. {"m" -> "WHWWHWW", "M" -> "WWHWWWH", 
+     "C" -> "HHHHHHHHHHHH"};
+  scale0 = Characters[scale0];
+  noteCursor = root;
+  fullScale = Append[fullScale, root];
+  Do[If[scale0[[n]] == "W", 
+    noteCursor = increaseWholeStep[noteCursor]; 
+    fullScale = Append[fullScale, noteCursor], 
+    noteCursor = increaseHalfStep[noteCursor]; 
+    fullScale = Append[fullScale, noteCursor]], {n, 1, 
+    Length[scale0]}]; fullScale]
+
+chordProgressionFactory[rootScale_, typeScale_, chordProgression_] := 
+ Module[{scale, chords, numOfScale}, 
+  scale = scaleFactory[rootScale, typeScale]; 
+  If[Length@scale > 0, , Return["Something went wrong!"]];
+  chords = StringSplit[chordProgression, "-"];
+  Table[If[UpperCaseQ@chords[[i]], 
+    numOfScale = FromDigits[chords[[i]], "Roman"]; 
+    chordFactory[scale[[numOfScale]], "M"], 
+    numOfScale = FromDigits[chords[[i]], "Roman"]; 
+    chordFactory[scale[[numOfScale]], "m"]], {i, 1, Length[chords]}]
+  ]
+
+fourchords = chordProgressionFactory["C4", "M", "I-V-vi-IV"]
+
+{{"C4", "E4", "G4"}, {"G4", "B4", "D5"}, {"A4", "C5", "E5"}, {"F4", 
+  "A4", "C5"}}
+
+ 
