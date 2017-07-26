@@ -1,0 +1,290 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9865,        281]
+NotebookOptionsPosition[      9550,        265]
+NotebookOutlinePosition[      9893,        280]
+CellTagsIndexPosition[      9850,        277]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"PlotDiagram", "[", 
+   RowBox[{"vertex_List", ",", "edge_List", ",", "args___"}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"v", ",", "vl", ",", "vp", ",", "e", ",", "el", ",", "es"}], 
+     "}"}], ",", 
+    RowBox[{
+     RowBox[{"v", "=", 
+      RowBox[{"Range", "[", 
+       RowBox[{"Length", "@", "vertex"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"vl", "=", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"vertex", "[", 
+         RowBox[{"[", 
+          RowBox[{"i", ",", "1"}], "]"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", 
+          RowBox[{"Length", "@", "vertex"}]}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"vp", "=", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"vertex", "[", 
+         RowBox[{"[", 
+          RowBox[{"i", ",", "2"}], "]"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", 
+          RowBox[{"Length", "@", "vertex"}]}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"e", "=", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"edge", "[", 
+         RowBox[{"[", 
+          RowBox[{"i", ",", "1"}], "]"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", 
+          RowBox[{"Length", "@", "edge"}]}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"el", "=", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"edge", "[", 
+         RowBox[{"[", 
+          RowBox[{"i", ",", "2"}], "]"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", 
+          RowBox[{"Length", "@", "edge"}]}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"es", "=", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"edge", "[", 
+         RowBox[{"[", 
+          RowBox[{"i", ",", "3"}], "]"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", 
+          RowBox[{"Length", "@", "edge"}]}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Graph", "[", 
+      RowBox[{"v", ",", "e", ",", 
+       RowBox[{"VertexCoordinates", "\[Rule]", "vp"}], ",", 
+       RowBox[{"VertexLabels", "\[Rule]", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"v", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "\[Rule]", 
+           RowBox[{"Placed", "[", 
+            RowBox[{
+             RowBox[{"vl", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0.5", ",", "0.5"}], "}"}]}], "]"}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "1", ",", 
+            RowBox[{"Length", "[", "v", "]"}]}], "}"}]}], "]"}]}], ",", 
+       RowBox[{"EdgeLabels", "\[Rule]", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"e", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "\[Rule]", 
+           RowBox[{"el", "[", 
+            RowBox[{"[", "i", "]"}], "]"}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "1", ",", 
+            RowBox[{"Length", "[", "e", "]"}]}], "}"}]}], "]"}]}], ",", 
+       RowBox[{"EdgeShapeFunction", "\[Rule]", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"e", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "\[Rule]", 
+           RowBox[{"es", "[", 
+            RowBox[{"[", "i", "]"}], "]"}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "1", ",", 
+            RowBox[{"Length", "[", "e", "]"}]}], "}"}]}], "]"}]}], ",", 
+       "args", ",", 
+       RowBox[{"VertexLabelStyle", "\[Rule]", 
+        RowBox[{"Directive", "[", 
+         RowBox[{"Italic", ",", "18"}], "]"}]}], ",", 
+       RowBox[{"EdgeLabelStyle", "\[Rule]", 
+        RowBox[{"Directive", "[", 
+         RowBox[{"Italic", ",", "15"}], "]"}]}], ",", 
+       RowBox[{"VertexSize", "\[Rule]", "0"}], ",", 
+       RowBox[{"VertexStyle", "\[Rule]", 
+        RowBox[{"Directive", "[", 
+         RowBox[{
+          RowBox[{"EdgeForm", "[", "]"}], ",", "White"}], "]"}]}]}], 
+      "]"}]}]}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"n", "=", "35"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"vertex", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\"\<\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"RandomReal", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "1"}], ",", "1"}], "}"}], "]"}], ",", 
+         RowBox[{"RandomReal", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "1"}], ",", "1"}], "}"}], "]"}]}], "}"}]}], "}"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", "n"}], "}"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{"Dynamic", "[", "l", "]"}], "\n", 
+ RowBox[{
+  RowBox[{"initim", "=", 
+   RowBox[{"AbsoluteTime", "[", "]"}]}], ";"}], "\n", 
+ RowBox[{"While", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Abs", "[", 
+     RowBox[{
+      RowBox[{"AbsoluteTime", "[", "]"}], "-", "initim"}], "]"}], "<", "20"}],
+    ",", 
+   RowBox[{
+    RowBox[{"vertex", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"\"\<\>\"", ",", 
+         RowBox[{
+          RowBox[{"vertex", "[", 
+           RowBox[{"[", 
+            RowBox[{"i", ",", "2"}], "]"}], "]"}], "+", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"RandomReal", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1"}], ",", "1"}], "}"}], "]"}], ",", 
+             RowBox[{"RandomReal", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1"}], ",", "1"}], "}"}], "]"}]}], "}"}], "*", 
+           RowBox[{"(", 
+            RowBox[{"8", "/", "100"}], ")"}]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1", ",", "n"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"edge", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Mod", "[", 
+             RowBox[{"i", ",", "11"}], "]"}], "+", "1"}], ")"}], 
+          "\[DirectedEdge]", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Mod", "[", 
+             RowBox[{
+              RowBox[{"i", "+", "1"}], ",", "11"}], "]"}], "+", "1"}], 
+           ")"}]}], ",", 
+         RowBox[{"Placed", "[", 
+          RowBox[{"\"\<\>\"", ",", 
+           RowBox[{"{", 
+            RowBox[{".5", ",", 
+             RowBox[{"{", 
+              RowBox[{".5", ",", 
+               RowBox[{"-", ".2"}]}], "}"}]}], "}"}]}], "]"}], ",", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"Black", ",", 
+             RowBox[{"Arrowheads", "[", "0", "]"}], ",", 
+             RowBox[{"Arrow", "[", "#", "]"}]}], "}"}], "&"}], ")"}]}], "}"}],
+        ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1", ",", "n"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"l", "=", 
+     RowBox[{"Colorize", "@", 
+      RowBox[{"WatershedComponents", "[", 
+       RowBox[{"FillingTransform", "[", 
+        RowBox[{
+         RowBox[{"ColorNegate", "@", 
+          RowBox[{"Image", "@", 
+           RowBox[{"PlotDiagram", "[", 
+            RowBox[{"vertex", ",", "edge", ",", 
+             RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
+             RowBox[{"ImagePadding", "\[Rule]", "40"}]}], "]"}]}]}], ",", 
+         ".05"}], "]"}], "]"}]}]}]}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.69985649566185*^9, 3.699856663709851*^9}, {
+   3.6998567177744102`*^9, 3.6998567269263396`*^9}, {3.699856762151365*^9, 
+   3.699856775743411*^9}, {3.699857674897896*^9, 3.6998577749497485`*^9}, {
+   3.699857809690444*^9, 3.699857809831073*^9}, {3.699858054236231*^9, 
+   3.6998580805362415`*^9}, 3.699858120704775*^9, {3.6998581935425377`*^9, 
+   3.699858283046674*^9}, {3.6998583342314215`*^9, 3.6998583668392024`*^9}, {
+   3.699858463550703*^9, 3.6998584678092613`*^9}, {3.6998585675540266`*^9, 
+   3.699858613022582*^9}, {3.699858666013135*^9, 3.6998586968831315`*^9}, {
+   3.699858736365895*^9, 3.699858784383468*^9}, 3.699858883999629*^9, {
+   3.6998589977351427`*^9, 3.6998590302097063`*^9}, 3.699859238783384*^9}],
+
+Cell[BoxData[
+ DynamicBox[ToBoxes[$CellContext`l, StandardForm],
+  ImageSizeCache->{576., {288., 293.}}]], "Output",
+ CellChangeTimes->{{3.699858145758519*^9, 3.699858164853329*^9}, 
+   3.6998581987977533`*^9, {3.6998582337659516`*^9, 3.6998582836561975`*^9}, {
+   3.6998583387659583`*^9, 3.699858392497198*^9}, 3.699858469543914*^9, 
+   3.6998586143821487`*^9, {3.6998586783526487`*^9, 3.69985869739878*^9}, 
+   3.6998587529483857`*^9, 3.6998587853056097`*^9, 3.699858851130209*^9, 
+   3.699858884615637*^9, {3.699859001999447*^9, 3.6998590305129185`*^9}, 
+   3.6998592428410645`*^9}]
+}, Open  ]]
+},
+WindowSize->{1350, 685},
+WindowMargins->{{-8, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.1 for Microsoft Windows (64-bit) (March 23, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 8366, 229, 332, "Input"],
+Cell[8949, 253, 585, 9, 629, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
