@@ -1,0 +1,1638 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     68835,       1629]
+NotebookOptionsPosition[     67971,       1599]
+NotebookOutlinePosition[     68466,       1619]
+CellTagsIndexPosition[     68423,       1616]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"PI", " ", "Day", " ", "Problem", " ", "1"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"TraditionalForm", "@", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "\"\<\[Pi] in the \!\(\*SuperscriptBox[\(Sky\), \(4\)]\) : Problem \
+1\>\"", ",", "30"}], "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"CircularityRatio", "[", 
+     RowBox[{
+      RowBox[{"A_:", "0"}], ",", 
+      RowBox[{"p_:", "1"}]}], "]"}], ":=", 
+    RowBox[{"Row", "[", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Circularity Ratio for A = \>\"", ",", 
+       RowBox[{"ToString", "[", "A", "]"}], ",", "\"\< and p = \>\"", ",", 
+       RowBox[{"ToString", "[", "p", "]"}], ",", "\"\< : \>\"", ",", 
+       RowBox[{"Style", "[", 
+        RowBox[{"HoldForm", "[", 
+         FractionBox[
+          RowBox[{"4", "*", "Pi", "*", "A"}], 
+          SuperscriptBox["p", "2"]], "]"}], "]"}], ",", 
+       "\"\< \[LongEqual] \>\"", ",", 
+       RowBox[{"ToString", "[", 
+        RowBox[{"N", "[", 
+         FractionBox[
+          RowBox[{"4", "*", "Pi", "*", "A"}], 
+          SuperscriptBox["p", "2"]], "]"}], "]"}], ",", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"N", "[", 
+           FractionBox[
+            RowBox[{"4", "*", "Pi", "*", "A"}], 
+            SuperscriptBox["p", "2"]], "]"}], "<", ".925"}], ",", 
+         "\"\< ; Object may have impacted at an angle under 20\[Degree] and \
+created a butterfly ejecta pattern\>\"", ","}], "]"}]}], "}"}], "]"}]}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"TraditionalForm", "@", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+      RowBox[{"Column", "[", 
+       RowBox[{"CircularityRatio", "@@@", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"32", ",", "21"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"67", ",", "30"}], "}"}]}], "}"}]}], "]"}], ",", "20"}], 
+     "]"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"PI", " ", "Day", " ", "Problem", " ", "2"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"TraditionalForm", "@", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "\"\<\[Pi] in the \!\(\*SuperscriptBox[\(Sky\), \(4\)]\) : Problem \
+2\>\"", ",", "30"}], "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"PlotDiagram", "[", 
+     RowBox[{"vertex_List", ",", "edge_List", ",", "args___"}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"v", ",", "vl", ",", "vp", ",", "e", ",", "el", ",", "es"}], 
+       "}"}], ",", 
+      RowBox[{
+       RowBox[{"v", "=", 
+        RowBox[{"Range", "[", 
+         RowBox[{"Length", "@", "vertex"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"vl", "=", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"vertex", "[", 
+           RowBox[{"[", 
+            RowBox[{"i", ",", "1"}], "]"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "1", ",", 
+            RowBox[{"Length", "@", "vertex"}]}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"vp", "=", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"vertex", "[", 
+           RowBox[{"[", 
+            RowBox[{"i", ",", "2"}], "]"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "1", ",", 
+            RowBox[{"Length", "@", "vertex"}]}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"e", "=", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"edge", "[", 
+           RowBox[{"[", 
+            RowBox[{"i", ",", "1"}], "]"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "1", ",", 
+            RowBox[{"Length", "@", "edge"}]}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"el", "=", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"edge", "[", 
+           RowBox[{"[", 
+            RowBox[{"i", ",", "2"}], "]"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "1", ",", 
+            RowBox[{"Length", "@", "edge"}]}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"es", "=", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"edge", "[", 
+           RowBox[{"[", 
+            RowBox[{"i", ",", "3"}], "]"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "1", ",", 
+            RowBox[{"Length", "@", "edge"}]}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Graph", "[", 
+        RowBox[{"v", ",", "e", ",", 
+         RowBox[{"VertexCoordinates", "\[Rule]", "vp"}], ",", 
+         RowBox[{"VertexLabels", "\[Rule]", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"v", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], "\[Rule]", 
+             RowBox[{"Placed", "[", 
+              RowBox[{
+               RowBox[{"vl", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"0.5", ",", "0.5"}], "}"}]}], "]"}]}], ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", "1", ",", 
+              RowBox[{"Length", "[", "v", "]"}]}], "}"}]}], "]"}]}], ",", 
+         RowBox[{"EdgeLabels", "\[Rule]", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"e", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], "\[Rule]", 
+             RowBox[{"el", "[", 
+              RowBox[{"[", "i", "]"}], "]"}]}], ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", "1", ",", 
+              RowBox[{"Length", "[", "e", "]"}]}], "}"}]}], "]"}]}], ",", 
+         RowBox[{"EdgeShapeFunction", "\[Rule]", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"e", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], "\[Rule]", 
+             RowBox[{"es", "[", 
+              RowBox[{"[", "i", "]"}], "]"}]}], ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", "1", ",", 
+              RowBox[{"Length", "[", "e", "]"}]}], "}"}]}], "]"}]}], ",", 
+         "args", ",", 
+         RowBox[{"VertexLabelStyle", "\[Rule]", 
+          RowBox[{"Directive", "[", 
+           RowBox[{"Italic", ",", "18"}], "]"}]}], ",", 
+         RowBox[{"EdgeLabelStyle", "\[Rule]", 
+          RowBox[{"Directive", "[", 
+           RowBox[{"Italic", ",", "15"}], "]"}]}], ",", 
+         RowBox[{"VertexSize", "\[Rule]", "0"}], ",", 
+         RowBox[{"VertexStyle", "\[Rule]", 
+          RowBox[{"Directive", "[", 
+           RowBox[{
+            RowBox[{"EdgeForm", "[", "]"}], ",", "White"}], "]"}]}]}], 
+        "]"}]}]}], "]"}]}], " ", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"pts", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"4.5", ",", 
+         RowBox[{
+          RowBox[{"4.5", "*", 
+           RowBox[{"-", "2"}]}], "+", "10"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"4.5", "+", "5"}], ")"}], "/", "2"}], ",", 
+         RowBox[{
+          RowBox[{"4.5", "*", 
+           RowBox[{"-", "2"}]}], "+", "10.3"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"5", ",", 
+         RowBox[{
+          RowBox[{"4.5", "*", 
+           RowBox[{"-", "2"}]}], "+", "10"}]}], "}"}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"vertex", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"\"\<\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "10"}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{"5", ",", "10"}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{"5", ",", "3"}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{"5", ",", "0"}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{"3", ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "3"}], "*", "2"}], "+", "10"}]}], "}"}]}], "}"}], 
+       ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{"5", ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "3"}], "*", "2"}], "+", "10"}]}], "}"}]}], "}"}], 
+       ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{"6", ",", "10"}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{"6", ",", "0"}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{"7", ",", "10"}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{"7", ",", "1.5"}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{"8", ",", "1.5"}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{"8", ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "3"}], "*", "2"}], "+", "10"}]}], "}"}]}], "}"}]}], 
+      "}"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"edge", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"1", "\[DirectedEdge]", "2"}], ",", 
+         RowBox[{"Placed", "[", 
+          RowBox[{
+           RowBox[{"Subscript", "[", 
+            RowBox[{"\"\<r\>\"", ",", "\"\<Moon\>\""}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{".5", ",", 
+             RowBox[{"{", 
+              RowBox[{".5", ",", 
+               RowBox[{"-", ".2"}]}], "}"}]}], "}"}]}], "]"}], ",", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"Black", ",", 
+             RowBox[{"Arrowheads", "[", "0", "]"}], ",", 
+             RowBox[{"Arrow", "[", "#", "]"}]}], "}"}], "&"}], ")"}]}], "}"}],
+        ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"2", "\[DirectedEdge]", "3"}], ",", 
+         RowBox[{"Placed", "[", 
+          RowBox[{"\"\<\>\"", ",", 
+           RowBox[{"{", 
+            RowBox[{".7", ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", ".5"}], ",", 
+               RowBox[{"-", ".2"}]}], "}"}]}], "}"}]}], "]"}], ",", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"Black", ",", 
+             RowBox[{"Arrowheads", "[", "0", "]"}], ",", 
+             RowBox[{"Arrow", "[", "#", "]"}]}], "}"}], "&"}], ")"}]}], "}"}],
+        ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"3", "\[DirectedEdge]", "4"}], ",", 
+         RowBox[{"Placed", "[", 
+          RowBox[{"\"\<x\>\"", ",", 
+           RowBox[{"{", 
+            RowBox[{".5", ",", 
+             RowBox[{"{", 
+              RowBox[{"1.3", ",", 
+               RowBox[{"-", ".2"}]}], "}"}]}], "}"}]}], "]"}], ",", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"Black", ",", 
+             RowBox[{"Arrowheads", "[", "0", "]"}], ",", 
+             RowBox[{"Arrow", "[", "#", "]"}]}], "}"}], "&"}], ")"}]}], "}"}],
+        ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"4", "\[DirectedEdge]", "1"}], ",", 
+         RowBox[{"Placed", "[", 
+          RowBox[{"\"\<\>\"", ",", 
+           RowBox[{"{", 
+            RowBox[{".5", ",", 
+             RowBox[{"{", 
+              RowBox[{".5", ",", 
+               RowBox[{"-", ".2"}]}], "}"}]}], "}"}]}], "]"}], ",", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"Black", ",", 
+             RowBox[{"Arrowheads", "[", "0", "]"}], ",", 
+             RowBox[{"Arrow", "[", "#", "]"}]}], "}"}], "&"}], ")"}]}], "}"}],
+        ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"5", "\[DirectedEdge]", "6"}], ",", 
+         RowBox[{"Placed", "[", 
+          RowBox[{"\"\<a\>\"", ",", 
+           RowBox[{"{", 
+            RowBox[{".5", ",", 
+             RowBox[{"{", 
+              RowBox[{".5", ",", 
+               RowBox[{"-", ".2"}]}], "}"}]}], "}"}]}], "]"}], ",", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"Black", ",", 
+             RowBox[{"Arrowheads", "[", "0", "]"}], ",", 
+             RowBox[{"Arrow", "[", "#", "]"}]}], "}"}], "&"}], ")"}]}], "}"}],
+        ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"7", "\[DirectedEdge]", "8"}], ",", 
+         RowBox[{"Placed", "[", 
+          RowBox[{
+           RowBox[{"Subscript", "[", 
+            RowBox[{"\"\<d\>\"", ",", "\"\<tot\>\""}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{".5", ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", ".2"}], ",", 
+               RowBox[{"-", ".2"}]}], "}"}]}], "}"}]}], "]"}], ",", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"Black", ",", 
+             RowBox[{"Arrowheads", "[", "0", "]"}], ",", 
+             RowBox[{"Arrow", "[", "#", "]"}]}], "}"}], "&"}], ")"}]}], "}"}],
+        ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"9", "\[DirectedEdge]", "10"}], ",", 
+         RowBox[{"Placed", "[", 
+          RowBox[{
+           RowBox[{"Subscript", "[", 
+            RowBox[{"\"\<d\>\"", ",", "\"\<em\>\""}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{".5", ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", ".2"}], ",", 
+               RowBox[{"-", ".2"}]}], "}"}]}], "}"}]}], "]"}], ",", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"Black", ",", 
+             RowBox[{"Arrowheads", "[", "0", "]"}], ",", 
+             RowBox[{"Arrow", "[", "#", "]"}]}], "}"}], "&"}], ")"}]}], "}"}],
+        ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"11", "\[DirectedEdge]", "12"}], ",", 
+         RowBox[{"Placed", "[", 
+          RowBox[{
+           RowBox[{"Subscript", "[", 
+            RowBox[{"\"\<r\>\"", ",", "\"\<earth\>\""}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{".5", ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", ".2"}], ",", 
+               RowBox[{"-", ".2"}]}], "}"}]}], "}"}]}], "]"}], ",", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"Black", ",", 
+             RowBox[{"Arrowheads", "[", "0", "]"}], ",", 
+             RowBox[{"Arrow", "[", "#", "]"}]}], "}"}], "&"}], ")"}]}], 
+        "}"}]}], "}"}]}], ";"}], "\n", 
+   RowBox[{"graph", "=", 
+    RowBox[{"Show", "[", 
+     RowBox[{
+      RowBox[{"PlotDiagram", "[", 
+       RowBox[{"vertex", ",", "edge", ",", 
+        RowBox[{"ImageSize", "\[Rule]", " ", "Large"}], ",", 
+        RowBox[{"ImagePadding", "\[Rule]", " ", "40"}]}], "]"}], ",", 
+      RowBox[{"Graphics", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"BezierCurve", "[", "pts", "]"}], ",", 
+         RowBox[{"Style", "[", 
+          RowBox[{
+           RowBox[{"Text", "[", 
+            RowBox[{"\[Theta]", ",", 
+             RowBox[{"{", 
+              RowBox[{"4.75", ",", ".9"}], "}"}]}], "]"}], ",", "15"}], 
+          "]"}]}], "}"}], "]"}]}], "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"probl2", "=", 
+     RowBox[{"Column", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Row", "[", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<Using the Small Angle Approximation, and examining the diagram \
+yields the Formula : \>\"", ",", 
+           RowBox[{"HoldForm", "[", 
+            RowBox[{
+             RowBox[{"Subscript", "[", 
+              RowBox[{"A", ",", "\"\<earth suface\>\""}], "]"}], 
+             "\[LongEqual]", 
+             RowBox[{"\[Pi]", "*", 
+              SuperscriptBox[
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"(", 
+                    RowBox[{
+                    SubscriptBox["d", "tot"], "-", 
+                    SubscriptBox["d", "em"]}], ")"}], "+", 
+                   SubscriptBox["r", "earth"]}], ")"}], "*", "\[Theta]"}], 
+                ")"}], "2"]}]}], "]"}], ",", " ", 
+           "\"\< where \[Theta] = \>\"", ",", " ", 
+           RowBox[{"HoldForm", "[", 
+            RowBox[{
+             SubscriptBox["r", "moon"], "/", 
+             SubscriptBox["d", "tot"]}], "]"}]}], "}"}], "]"}], ",", 
+        RowBox[{"Row", "[", 
+         RowBox[{"{", 
+          RowBox[{"\"\<Thus Yielding \>\"", ",", 
+           RowBox[{"Subscript", "[", 
+            RowBox[{"A", ",", "\"\<earth suface\>\""}], "]"}], ",", 
+           "\"\< \[LongEqual] \>\"", ",", 
+           RowBox[{"HoldForm", "[", " ", 
+            RowBox[{"\[Pi]", "*", 
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{"377770", "-", "372027"}], ")"}], "+", "6378"}], 
+                 ")"}], "*", 
+                RowBox[{"(", 
+                 RowBox[{"1738", "/", "377700"}], ")"}]}], ")"}], "2"]}], 
+            "]"}], ",", "\"\< \[LongEqual] \>\"", ",", 
+           RowBox[{"N", "[", 
+            RowBox[{"\[Pi]", "*", 
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{"377770", "-", "372027"}], ")"}], "+", "6378"}], 
+                 ")"}], "*", 
+                RowBox[{"(", 
+                 RowBox[{"1738", "/", "377700"}], ")"}]}], ")"}], "2"]}], 
+            "]"}], ",", "\"\< \!\(\*SuperscriptBox[\(km\), \(2\)]\)\>\""}], 
+          "}"}], "]"}]}], "}"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"TraditionalForm", "@", 
+    RowBox[{"Style", "[", 
+     RowBox[{"probl2", ",", "20"}], "]"}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"PI", " ", "Day", " ", "Problem", " ", "3"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"TraditionalForm", "@", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "\"\<\[Pi] in the \!\(\*SuperscriptBox[\(Sky\), \(4\)]\) : Problem \
+3\>\"", ",", "30"}], "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"prob3", "=", 
+     RowBox[{"Column", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Row", "[", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<Keplers third law, when one mass is much larger than the \
+other, takes the form of \>\"", ",", 
+           RowBox[{"HoldForm", "[", 
+            RowBox[{
+             FractionBox[
+              SuperscriptBox["T", "2"], 
+              SuperscriptBox["a", "3"]], "\[TildeTilde]", 
+             FractionBox[
+              RowBox[{"4", "*", 
+               SuperscriptBox["\[Pi]", "2"]}], 
+              RowBox[{"G", "*", "M"}]]}], "]"}]}], "}"}], "]"}], ",", 
+        RowBox[{"Row", "[", 
+         RowBox[{"{", 
+          RowBox[{"\"\<For this particular system: G \[LongEqual] \>\"", ",", 
+           RowBox[{"UnitConvert", "[", 
+            RowBox[{
+             RowBox[{"Quantity", "[", "\"\<GravitationalConstant\>\"", "]"}], 
+             ",", "\"\<meters^3/(kilogram*second^2)\>\""}], "]"}], ",", " ", 
+           "\"\<, M \[LongEqual] \>\"", " ", ",", 
+           RowBox[{"UnitConvert", "[", 
+            RowBox[{
+             RowBox[{"Quantity", "[", "\"\<SaturnMass\>\"", "]"}], ",", 
+             "\"\<SI\>\""}], "]"}], ",", 
+           "\"\<, a \[LongEqual] \!\(\*SubscriptBox[\(a\), \(sc\)]\) \
+\[LongEqual] \>\"", ",", 
+           RowBox[{"Quantity", "[", 
+            RowBox[{"1274828", ",", "\"\<Kilometers\>\""}], "]"}]}], "}"}], 
+         "]"}], ",", 
+        RowBox[{"Row", "[", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<Therefore the average period of each orbit is \
+\!\(\*SubscriptBox[\(T\), \(sc\)]\) \[LongEqual] \>\"", ",", " ", 
+           RowBox[{"secorbit", "=", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{"4", "*", 
+                   SuperscriptBox["\[Pi]", "2"]}], ")"}], "/", 
+                 RowBox[{"(", 
+                  RowBox[{"UnitConvert", "[", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "Quantity", "[", "\"\<GravitationalConstant\>\"", "]"}], 
+                    "*", 
+                    RowBox[{"Quantity", "[", "\"\<SaturnMass\>\"", "]"}]}], 
+                    ",", "\"\<meter^3/second^2\>\""}], "]"}], ")"}]}], ")"}], 
+               "*", 
+               SuperscriptBox[
+                RowBox[{"Quantity", "[", 
+                 RowBox[{"1274828", ",", "\"\<Kilometers\>\""}], "]"}], 
+                "3"]}], ")"}], 
+             RowBox[{"1", "/", "2"}]]}], ",", "\"\< which is \>\"", ",", " ", 
+           RowBox[{"dayorbit", "=", 
+            RowBox[{"UnitConvert", "[", 
+             RowBox[{"secorbit", ",", "\"\<Days\>\""}], "]"}]}]}], "}"}], 
+         "]"}], ",", 
+        RowBox[{"Row", "[", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<This means that the total will be 22 times longer, thus the \
+spacecraft will crash approximately \>\"", ",", 
+           RowBox[{"22", "*", "dayorbit"}], ",", 
+           "\"\< after April 23, 2017 or on \>\"", ",", 
+           RowBox[{"DateString", "[", 
+            RowBox[{
+             RowBox[{"DatePlus", "[", 
+              RowBox[{
+               RowBox[{"DateObject", "[", 
+                RowBox[{"{", 
+                 RowBox[{"2017", ",", "4", ",", "23"}], "}"}], "]"}], ",", 
+               RowBox[{"QuantityMagnitude", "[", 
+                RowBox[{"22", "*", "dayorbit"}], "]"}]}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+              "\"\<MonthName\>\"", ",", "\"\< \>\"", ",", "\"\<Day\>\"", ",", 
+               "\"\<, \>\"", ",", "\"\<Year\>\""}], "}"}]}], "]"}]}], "}"}], 
+         "]"}]}], "}"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"TraditionalForm", "@", 
+    RowBox[{"Style", "[", 
+     RowBox[{"prob3", ",", "20"}], "]"}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"PI", " ", "Day", " ", "Problem", " ", "4"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"TraditionalForm", "@", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "\"\<\[Pi] in the \!\(\*SuperscriptBox[\(Sky\), \(4\)]\) : Problem \
+4\>\"", ",", "30"}], "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"prob4body", "=", 
+     RowBox[{"Column", "[", 
+      RowBox[{"{", " ", 
+       RowBox[{
+       "\"\<Taken from: \
+http://www.madsci.org/posts/archives/2006-07/1152815859.As.r.html Credit: \
+Bryan Dunne, Instructor, Astronomy, University of Illinois\n\n First, we need \
+to define the inner and outer edges of a habitable zone. Life needs liquid \
+water, so lets define the \\\"HZ\\\" as the distances over which the average \
+surface temperature of the planet will be between the temperatures at which \
+water boils (100 C, or 373 K) and freezes (0 C, or 273 K). Now lets see how \
+to compute the average surface temperature of the planet.\n\nThe planet's \
+surface is heated by solar radiation. The amount of solar energy the planet \
+will receive depends 1) the luminosity (total energy output) of its sun, 2) \
+how big the planet is, 3) how reflective the planet is, and 4) how far it is \
+from its sun.\n\>\"", ",", 
+        "\"\<\nLets call the luminosity of the sun \!\(\*SubscriptBox[\(L\), \
+\(*\)]\). The radius of the planet is \!\(\*SubscriptBox[\(R\), \(0\)]\), and \
+so the planet will collect solar energy over an area \
+\!\(\*SuperscriptBox[SubscriptBox[\(\[Pi]R\), \(0\)], \(2\)]\) (the area of a \
+circle). The reflectivity of the planet, called its \\\"albedo\\\" (A in our \
+formula), is the fraction of solar radiation that is reflected back to space; \
+Earth's albedo is about 0.3. We are interested in 1-A, how much of the solar \
+radiation goes into heating the planet. The distance from the planet to the \
+sun is d. The sun's total energy (luminosity) will be spread out over a \
+sphere with area 4\!\(\*SuperscriptBox[\(\[Pi]d\), \(2\)]\).\n\nYielding the \
+amount of Solar energy warming the planet = \
+\!\(\*FractionBox[\(\*SubscriptBox[\(L\), \(*\)] \
+\*SuperscriptBox[SubscriptBox[\(\[Pi]R\), \(0\)], \(2\)] \((1 - A)\)\), \((4 \
+\*SuperscriptBox[\(\[Pi]d\), \(2\)])\)]\)\n\>\"", ",", 
+        "\"\<\nIn order to stay at a steady surface temperature, the planet \
+must radiate away an amount of energy equal to the amount it gets from its \
+sun. This energy will be emitted as thermal or \\\"blackbody\\\" radiation. \
+Assuming the energy is emitted evenly from all over the planet's surface,\n\n\
+Energy emitted by the planet = 4\!\(\*SuperscriptBox[SubscriptBox[\(\[Pi]R\), \
+\(0\)], \(2\)]\)\!\(\*SuperscriptBox[\(\[Sigma]T\), \(4\)]\), where \
+\!\(\*SubscriptBox[\(R\), \(0\)]\) is again the radius of the planet, T is \
+the average surface temperature of the planet (in Kelvins), and \[Sigma] is a \
+physical constant known as Boltzmann's constant (equal to \
+1.3806503\[Times]10-23 m2 kg s-2 K-1).\n\>\"", ",", 
+        "\"\<\nTherefore when the planet is in a steady state, one gets 4\!\(\
+\*SuperscriptBox[SubscriptBox[\(\[Pi]R\), \(0\)], \
+\(2\)]\)\!\(\*SuperscriptBox[\(\[Sigma]T\), \(4\)]\) = \
+\!\(\*FractionBox[\(\*SubscriptBox[\(L\), \(*\)] \
+\*SuperscriptBox[SubscriptBox[\(\[Pi]R\), \(0\)], \(2\)] \((1 - A)\)\), \((4 \
+\*SuperscriptBox[\(\[Pi]d\), \(2\)])\)]\)\n\nYou can then solve this equation \
+for d. Finally, given the luminosity of the planet's sun and assuming an \
+albedo (as I mentioned above, the Earth's albedo is about 0.3), plug-in T=192 \
+K (-81.15 \[Degree]C or -114.07 \[Degree]F) and T=295 K (-21.85 \[Degree]C or \
+71.33 \[Degree]F) to find the outer and inner limits of the habitable zone, \
+respectively.\>\"", ",", "\"\<\>\"", ",", "\"\<\>\"", ",", 
+        RowBox[{"Row", "[", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<Solving the energy equation for a planet, given above, for d \
+gives \>\"", ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Solve", "[", " ", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"4", "\[Pi]", "*", 
+                 SuperscriptBox["R", "2"], "*", "\[Sigma]", "*", 
+                 SuperscriptBox["T", "4"]}], " ", "==", " ", 
+                FractionBox[
+                 RowBox[{"L", "*", "\[Pi]", "*", 
+                  SuperscriptBox["R", "2"], 
+                  RowBox[{"(", 
+                   RowBox[{"1", "-", "A"}], ")"}]}], 
+                 RowBox[{"(", 
+                  RowBox[{"4", "\[Pi]", "*", 
+                   SuperscriptBox["d", "2"]}], ")"}]]}], ",", "d"}], "]"}], 
+             "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "1"}], "]"}], "]"}], "/.", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Rule", "[", 
+               RowBox[{"x_", ",", "y_"}], "]"}], "\[Rule]", 
+              RowBox[{"x", "\[Equal]", "y"}]}], " ", "}"}]}]}], "}"}], "]"}], 
+        ",", 
+        RowBox[{"Row", "[", 
+         RowBox[{
+         "{", "\"\<We can now judge whether or not an planet is in the \
+habitable zone.\>\"", " ", "}"}], "]"}], ",", 
+        RowBox[{"Row", "[", 
+         RowBox[{
+         "{", "\"\<When T = 192-295 K, A = 0.3, L = \
+2.0097*\!\(\*SuperscriptBox[\(10\), \(23\)]\) Watts, \
+\[Sigma]=5.67*\!\(\*SuperscriptBox[\(10\), \(-8\)]\) W/(\!\(\*SuperscriptBox[\
+\(m\), \(2\)]\) \!\(\*SuperscriptBox[\(K\), \(4\)]\)) the habitable zone \
+boundaries are :\>\"", "}"}], "]"}], ",", 
+        RowBox[{"Row", "[", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<d\!\(\*SubscriptBox[\(|\), \(T = \(\(192\)  \(K\)\(\\\ \)\)\)]\
+\) \[LongEqual] \>\"", ",", " ", 
+           RowBox[{"dout", "=", 
+            RowBox[{
+             RowBox[{"Solve", "[", " ", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"4", "\[Pi]", "*", 
+                  SuperscriptBox["R", "2"], "*", "\[Sigma]", "*", 
+                  SuperscriptBox["T", "4"]}], " ", "==", " ", 
+                 FractionBox[
+                  RowBox[{"L", "*", "\[Pi]", "*", 
+                   SuperscriptBox["R", "2"], 
+                   RowBox[{"(", 
+                    RowBox[{"1", "-", "A"}], ")"}]}], 
+                  RowBox[{"(", 
+                   RowBox[{"4", "\[Pi]", "*", 
+                    SuperscriptBox["d", "2"]}], ")"}]]}], "/.", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"T", "\[Rule]", " ", "192"}], ",", 
+                  RowBox[{"A", "\[Rule]", " ", ".3"}], ",", 
+                  RowBox[{"L", "\[Rule]", " ", 
+                   RowBox[{"2.0097", "*", 
+                    SuperscriptBox["10", "23"]}]}], ",", " ", 
+                  RowBox[{"\[Sigma]", "\[Rule]", " ", 
+                   RowBox[{"5.67", "*", 
+                    SuperscriptBox["10", 
+                    RowBox[{"-", "8"}]]}]}]}], "}"}]}], ",", "d"}], "]"}], 
+             "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "1", ",", "2"}], "]"}], "]"}]}], ",", 
+           "\"\< meters or \>\"", ",", 
+           RowBox[{"QuantityMagnitude", "[", 
+            RowBox[{"UnitConvert", "[", 
+             RowBox[{
+              RowBox[{"Quantity", "[", 
+               RowBox[{"dout", ",", "\"\<meters\>\""}], "]"}], ",", 
+              "\"\<AstronomicalUnit\>\""}], "]"}], "]"}], ",", 
+           "\"\< AU and d\!\(\*SubscriptBox[\(|\), \(T = \(\(295\)  \(K\)\(\\\
+\ \)\)\)]\) \[LongEqual] \>\"", ",", 
+           RowBox[{"din", "=", 
+            RowBox[{
+             RowBox[{"Solve", "[", " ", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"4", "\[Pi]", "*", 
+                  SuperscriptBox["R", "2"], "*", "\[Sigma]", "*", 
+                  SuperscriptBox["T", "4"]}], " ", "==", " ", 
+                 FractionBox[
+                  RowBox[{"L", "*", "\[Pi]", "*", 
+                   SuperscriptBox["R", "2"], 
+                   RowBox[{"(", 
+                    RowBox[{"1", "-", "A"}], ")"}]}], 
+                  RowBox[{"(", 
+                   RowBox[{"4", "\[Pi]", "*", 
+                    SuperscriptBox["d", "2"]}], ")"}]]}], "/.", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"T", "\[Rule]", " ", "295"}], ",", 
+                  RowBox[{"A", "\[Rule]", " ", ".3"}], ",", 
+                  RowBox[{"L", "\[Rule]", " ", 
+                   RowBox[{"2.0097", "*", 
+                    SuperscriptBox["10", "23"]}]}], ",", " ", 
+                  RowBox[{"\[Sigma]", "\[Rule]", " ", 
+                   RowBox[{"5.67", "*", 
+                    SuperscriptBox["10", 
+                    RowBox[{"-", "8"}]]}]}]}], "}"}]}], ",", "d"}], "]"}], 
+             "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "1", ",", "2"}], "]"}], "]"}]}], ",", 
+           "\"\< meters or \>\"", ",", 
+           RowBox[{"QuantityMagnitude", "[", 
+            RowBox[{"UnitConvert", "[", 
+             RowBox[{
+              RowBox[{"Quantity", "[", 
+               RowBox[{"din", ",", "\"\<meters\>\""}], "]"}], ",", 
+              "\"\<AstronomicalUnit\>\""}], "]"}], "]"}], ",", 
+           "\"\< AU\>\""}], "}"}], "]"}], ",", 
+        RowBox[{"Row", "[", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<Using Kepler's Third Law, where the orbits are approximatly \
+circular, we solve for a :\>\"", ",", " ", 
+           RowBox[{"HoldForm", "[", 
+            RowBox[{
+             FractionBox[
+              SuperscriptBox["P", "2"], 
+              SuperscriptBox["a", "3"]], "\[TildeTilde]", 
+             FractionBox[
+              RowBox[{"4", "*", 
+               SuperscriptBox["\[Pi]", "2"]}], 
+              RowBox[{"G", "*", "M"}]]}], "]"}], ",", 
+           "\"\< \[RightArrow] \>\"", ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Solve", "[", " ", 
+              RowBox[{
+               RowBox[{
+                FractionBox[
+                 SuperscriptBox["P", "2"], 
+                 SuperscriptBox["a", "3"]], "==", " ", 
+                FractionBox[
+                 RowBox[{"4", "*", 
+                  SuperscriptBox["\[Pi]", "2"]}], 
+                 RowBox[{"G", "*", "M"}]]}], ",", "a"}], "]"}], "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "1"}], "]"}], "]"}], "/.", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Rule", "[", 
+               RowBox[{"x_", ",", "y_"}], "]"}], "\[Rule]", 
+              RowBox[{"x", "\[Equal]", "y"}]}], " ", "}"}]}]}], "}"}], "]"}], 
+        ",", 
+        RowBox[{"Row", "[", 
+         RowBox[{
+         "{", "\"\<We can now figure out if a planet is in the habitable zone \
+or not.\>\"", "}"}], "]"}]}], "}"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"daylist", "=", 
+     RowBox[{"{", 
+      RowBox[{
+      "1.51087081", ",", "2.4218233", ",", "4.049610", ",", "6.099615", ",", 
+       "9.206690", ",", "12.35294", ",", "20.0000"}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"yearlist", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"QuantityMagnitude", "[", 
+        RowBox[{"UnitConvert", "[", 
+         RowBox[{
+          RowBox[{"Quantity", "[", 
+           RowBox[{"#", ",", "\"\<Days\>\""}], "]"}], ",", "\"\<Years\>\""}], 
+         "]"}], "]"}], "&"}], "/@", "daylist"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"resulttable", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"\"\<TRAPPIST-1\>\"", "<>", 
+          RowBox[{
+           RowBox[{"Alphabet", "[", "]"}], "[", 
+           RowBox[{"[", 
+            RowBox[{"i", "+", "1"}], "]"}], "]"}]}], ",", 
+         RowBox[{"tem", "=", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Quantity", "[", 
+              RowBox[{
+               RowBox[{"1.06198", "*", 
+                SuperscriptBox["10", "19"]}], ",", 
+               "\"\<meters^3/(second^2)\>\""}], "]"}], "*", 
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"Quantity", "[", 
+                 RowBox[{
+                  RowBox[{"yearlist", "[", 
+                   RowBox[{"[", "i", "]"}], "]"}], ",", "\"\<Years\>\""}], 
+                 "]"}], "/", 
+                RowBox[{"(", 
+                 RowBox[{"2", "*", "Pi"}], ")"}]}], ")"}], "2"]}], ")"}], 
+           RowBox[{"1", "/", "3"}]]}], ",", 
+         RowBox[{"temau", "=", 
+          RowBox[{"UnitConvert", "[", 
+           RowBox[{"tem", ",", "\"\<AstronomicalUnit\>\""}], "]"}]}], ",", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"QuantityMagnitude", "[", 
+             RowBox[{"UnitConvert", "[", 
+              RowBox[{
+               RowBox[{"Quantity", "[", 
+                RowBox[{"din", ",", "\"\<meters\>\""}], "]"}], ",", 
+               "\"\<AstronomicalUnit\>\""}], "]"}], "]"}], "\[LessEqual]", 
+            " ", 
+            RowBox[{"QuantityMagnitude", "[", "temau", "]"}], "\[LessEqual]", 
+            " ", 
+            RowBox[{"QuantityMagnitude", "[", 
+             RowBox[{"UnitConvert", "[", 
+              RowBox[{
+               RowBox[{"Quantity", "[", 
+                RowBox[{"dout", ",", "\"\<meters\>\""}], "]"}], ",", 
+               "\"\<AstronomicalUnit\>\""}], "]"}], "]"}]}], ",", 
+           "\"\<Possibly Habitable \[HappySmiley]\>\"", ",", 
+           "\"\<Not Possibly Habitable \[SadSmiley]\>\""}], "]"}]}], "}"}], 
+       ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1", ",", 
+         RowBox[{"Length", "[", "yearlist", "]"}]}], "}"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"TraditionalForm", "@", 
+    RowBox[{"Style", "[", 
+     RowBox[{"prob4body", ",", "20"}], "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{"TraditionalForm", "@", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+      RowBox[{"TableForm", "@", 
+       RowBox[{"PrependTo", "[", 
+        RowBox[{"resulttable", ",", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<Name of Planet\>\"", ",", " ", 
+           "\"\<Orbital Distance in Meters\>\"", ",", 
+           "\"\<Orbital Distance in AU\>\"", ",", "\"\< Habitable?\>\""}], 
+          "}"}]}], "]"}]}], ",", "15"}], "]"}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{
+  3.6984938401606*^9, {3.6984938869942904`*^9, 3.698493945101469*^9}, {
+   3.698494172033214*^9, 3.6984941779929705`*^9}, {3.6984942518450823`*^9, 
+   3.6984942616747465`*^9}, {3.6984942990100822`*^9, 
+   3.6984944287575655`*^9}, {3.6984944671663165`*^9, 
+   3.6984947004097643`*^9}, {3.698494893996293*^9, 3.6984949238312397`*^9}, {
+   3.698495222924034*^9, 3.6984952301663074`*^9}, {3.6984953040137444`*^9, 
+   3.6984953488581285`*^9}, {3.698495435145649*^9, 3.6984954473092465`*^9}, {
+   3.6984956392864017`*^9, 3.698495705891547*^9}, {3.6984977158604174`*^9, 
+   3.698497717313882*^9}, {3.6984977583939548`*^9, 3.6984977592691526`*^9}, {
+   3.6984978305232105`*^9, 3.6984982181839523`*^9}, {3.69849828668559*^9, 
+   3.6984983092445126`*^9}, {3.6984984320572753`*^9, 
+   3.6984985935760584`*^9}, {3.6984987503295703`*^9, 
+   3.6984987716274304`*^9}, {3.698498816438393*^9, 3.698498883822464*^9}, {
+   3.6984989354609933`*^9, 3.6984989460134315`*^9}, {3.698499057662536*^9, 
+   3.698499104676036*^9}, {3.6984991846549077`*^9, 3.6984991854518223`*^9}, {
+   3.698499290999643*^9, 3.6984994461092634`*^9}, {3.698499526736*^9, 
+   3.6984995486264334`*^9}, {3.69849958232918*^9, 3.698499742972333*^9}, {
+   3.6984997900993643`*^9, 3.6984999162105217`*^9}, {3.698500180421173*^9, 
+   3.6985002293919992`*^9}, {3.698500289155963*^9, 3.698500377578785*^9}, 
+   3.6985004222131042`*^9, {3.6985004602640333`*^9, 3.698500673049862*^9}, {
+   3.6985007708535132`*^9, 3.6985009519876823`*^9}, 3.6985009873394766`*^9, {
+   3.698501028410755*^9, 3.6985011629473968`*^9}, {3.6985012067021313`*^9, 
+   3.698501473156034*^9}, {3.6985015115701675`*^9, 3.6985015541267185`*^9}, {
+   3.6985015882875943`*^9, 3.6985016215460525`*^9}, {3.698501701936365*^9, 
+   3.6985017714781494`*^9}, {3.698502017747712*^9, 3.6985020750836997`*^9}, {
+   3.6985021087348366`*^9, 3.6985023949309225`*^9}, {3.698502426475132*^9, 
+   3.6985026995424213`*^9}, {3.6985027316353264`*^9, 3.698502844658592*^9}, {
+   3.698502886294839*^9, 3.6985030695117807`*^9}, {3.69850311837243*^9, 
+   3.698503200883572*^9}, {3.698503239408711*^9, 3.698503295840226*^9}, {
+   3.698503343157404*^9, 3.6985033482987432`*^9}, {3.6985034032753787`*^9, 
+   3.69850352071154*^9}, {3.6985035777198687`*^9, 3.6985037459813595`*^9}, {
+   3.698503779672455*^9, 3.698503812192878*^9}, {3.6985038769486513`*^9, 
+   3.6985039013249407`*^9}, {3.6985057119115925`*^9, 
+   3.6985058167923613`*^9}, {3.6985058981212215`*^9, 
+   3.6985059383351583`*^9}, {3.698505980435953*^9, 3.6985062771220627`*^9}, {
+   3.6985063141052604`*^9, 3.6985064390931935`*^9}, {3.698506469807436*^9, 
+   3.6985066564111485`*^9}, {3.698506693815034*^9, 3.69850671446136*^9}, {
+   3.698506763927707*^9, 3.6985069155439544`*^9}, {3.698506968622657*^9, 
+   3.6985072421383753`*^9}, {3.698507274077245*^9, 3.698507284336052*^9}, {
+   3.6985073179462986`*^9, 3.6985079793078403`*^9}, {3.698508012728693*^9, 
+   3.698508120180668*^9}, {3.6985082529258833`*^9, 3.6985082534885983`*^9}, {
+   3.698508289200636*^9, 3.6985084164951677`*^9}, {3.6985084562326255`*^9, 
+   3.6985084593893204`*^9}, {3.6985085683325186`*^9, 
+   3.6985086251678534`*^9}, {3.698508699634633*^9, 3.6985088939970016`*^9}, {
+   3.6985089281039305`*^9, 3.698509047451592*^9}, {3.6985090830298953`*^9, 
+   3.6985092300380545`*^9}, {3.698509313057415*^9, 3.698509336326728*^9}, {
+   3.698509398736087*^9, 3.698509781627172*^9}, {3.6985098591085134`*^9, 
+   3.698509953548584*^9}, {3.698509994559985*^9, 3.698510109878706*^9}, {
+   3.6985101495592527`*^9, 3.6985101573927593`*^9}, {3.69851022497453*^9, 
+   3.698510237379168*^9}, {3.698510340274728*^9, 3.698510403169581*^9}, {
+   3.6985104444382515`*^9, 3.6985104495943265`*^9}, {3.6985105627228413`*^9, 
+   3.6985105730269694`*^9}, {3.698510699625792*^9, 3.698510731771759*^9}, {
+   3.6985109094446926`*^9, 3.698510909547306*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox["\<\"\[Pi] in the \\!\\(\\*SuperscriptBox[\\(Sky\\), \\(4\\)]\\) : \
+Problem 1\"\>",
+   StripOnInput->False,
+   FontSize->30], TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.6985084169484296`*^9, {3.698508573164031*^9, 3.6985085790395684`*^9}, 
+   3.698508847434821*^9, 3.698508894559564*^9, 3.698509008250098*^9, 
+   3.6985092420648084`*^9, {3.6985095005350037`*^9, 3.6985095506442485`*^9}, 
+   3.698509700229313*^9, {3.6985097658995247`*^9, 3.698509782189697*^9}, {
+   3.6985099285791535`*^9, 3.698509953923599*^9}, 3.6985100037150154`*^9, 
+   3.6985101179783993`*^9, 3.6985101578459115`*^9, 3.6985104562237005`*^9, 
+   3.698510538438929*^9, 3.6985105735738735`*^9, 3.698510744902956*^9, 
+   3.6985109099535522`*^9}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   TagBox[GridBox[{
+      {
+       TemplateBox[{
+        "\"Circularity Ratio for A = \"","\"32\"","\" and p = \"","\"21\"",
+         "\" : \"",StyleBox[
+          TagBox[
+           FractionBox[
+            RowBox[{"4", " ", "\[Pi]", " ", "32"}], 
+            SuperscriptBox["21", "2"]], HoldForm], StripOnInput -> False],
+         "\" \[LongEqual] \"","\"0.911845\"",
+         "\" ; Object may have impacted at an angle under 20\[Degree] and \
+created a butterfly ejecta pattern\""},
+        "RowDefault"]},
+      {
+       TemplateBox[{
+        "\"Circularity Ratio for A = \"","\"67\"","\" and p = \"","\"30\"",
+         "\" : \"",StyleBox[
+          TagBox[
+           FractionBox[
+            RowBox[{"4", " ", "\[Pi]", " ", "67"}], 
+            SuperscriptBox["30", "2"]], HoldForm], StripOnInput -> False],
+         "\" \[LongEqual] \"","\"0.935496\"",""},
+        "RowDefault"]}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{"Columns" -> {{Left}}},
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+    "Column"],
+   StripOnInput->False,
+   FontSize->20], TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.6985084169484296`*^9, {3.698508573164031*^9, 3.6985085790395684`*^9}, 
+   3.698508847434821*^9, 3.698508894559564*^9, 3.698509008250098*^9, 
+   3.6985092420648084`*^9, {3.6985095005350037`*^9, 3.6985095506442485`*^9}, 
+   3.698509700229313*^9, {3.6985097658995247`*^9, 3.698509782189697*^9}, {
+   3.6985099285791535`*^9, 3.698509953923599*^9}, 3.6985100037150154`*^9, 
+   3.6985101179783993`*^9, 3.6985101578459115`*^9, 3.6985104562237005`*^9, 
+   3.698510538438929*^9, 3.6985105735738735`*^9, 3.698510744902956*^9, 
+   3.6985109099535522`*^9}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox["\<\"\[Pi] in the \\!\\(\\*SuperscriptBox[\\(Sky\\), \\(4\\)]\\) : \
+Problem 2\"\>",
+   StripOnInput->False,
+   FontSize->30], TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.6985084169484296`*^9, {3.698508573164031*^9, 3.6985085790395684`*^9}, 
+   3.698508847434821*^9, 3.698508894559564*^9, 3.698509008250098*^9, 
+   3.6985092420648084`*^9, {3.6985095005350037`*^9, 3.6985095506442485`*^9}, 
+   3.698509700229313*^9, {3.6985097658995247`*^9, 3.698509782189697*^9}, {
+   3.6985099285791535`*^9, 3.698509953923599*^9}, 3.6985100037150154`*^9, 
+   3.6985101179783993`*^9, 3.6985101578459115`*^9, 3.6985104562237005`*^9, 
+   3.698510538438929*^9, 3.6985105735738735`*^9, 3.698510744902956*^9, 
+   3.6985109099691772`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[{{
+    {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+     Arrowheads[{{0.01662309542902967, 0.8}}], {
+      {GrayLevel[0], Arrowheads[0], ArrowBox[{{0., 10.}, {5., 10.}}]}, 
+      InsetBox[
+       StyleBox[
+        SubscriptBox["\<\"r\"\>", "\<\"Moon\"\>"],
+        StripOnInput->False,
+        FontSize->15,
+        FontSlant->Italic], Offset[{0, 2}, {2.5, 10.}], ImageScaled[{0.5, -0.2}],
+       BaseStyle->"Graphics"]}, {
+      {GrayLevel[0], Arrowheads[0], ArrowBox[{{5., 10.}, {5., 3.}}]}, InsetBox[
+       StyleBox["\<\"\"\>",
+        StripOnInput->False,
+        FontSize->15,
+        FontSlant->Italic], Offset[{0, 2}, {5., 5.1}], ImageScaled[{-0.5, -0.2}],
+       BaseStyle->"Graphics"]}, {
+      {GrayLevel[0], Arrowheads[0], ArrowBox[{{5., 3.}, {5., 0.}}]}, InsetBox[
+       StyleBox["\<\"x\"\>",
+        StripOnInput->False,
+        FontSize->15,
+        FontSlant->Italic], Offset[{0, 2}, {5., 1.5}], ImageScaled[{1.3, -0.2}],
+       BaseStyle->"Graphics"]}, {
+      {GrayLevel[0], Arrowheads[0], ArrowBox[{{5., 0.}, {0., 10.}}]}, InsetBox[
+       StyleBox["\<\"\"\>",
+        StripOnInput->False,
+        FontSize->15,
+        FontSlant->Italic], Offset[{0, 2}, {2.5, 5.}], ImageScaled[{0.5, -0.2}],
+       BaseStyle->"Graphics"]}, {
+      {GrayLevel[0], Arrowheads[0], ArrowBox[{{3., 4.}, {5., 4.}}]}, InsetBox[
+       StyleBox["\<\"a\"\>",
+        StripOnInput->False,
+        FontSize->15,
+        FontSlant->Italic], Offset[{0, 2}, {4., 4.}], ImageScaled[{0.5, -0.2}],
+       BaseStyle->"Graphics"]}, {
+      {GrayLevel[0], Arrowheads[0], ArrowBox[{{6., 10.}, {6., 0.}}]}, InsetBox[
+       StyleBox[
+        SubscriptBox["\<\"d\"\>", "\<\"tot\"\>"],
+        StripOnInput->False,
+        FontSize->15,
+        FontSlant->Italic], Offset[{0, 2}, {6., 5.}], ImageScaled[{-0.2, -0.2}],
+       BaseStyle->"Graphics"]}, {
+      {GrayLevel[0], Arrowheads[0], ArrowBox[{{7., 10.}, {7., 1.5}}]}, 
+      InsetBox[
+       StyleBox[
+        SubscriptBox["\<\"d\"\>", "\<\"em\"\>"],
+        StripOnInput->False,
+        FontSize->15,
+        FontSlant->Italic], Offset[{0, 2}, {7., 5.75}], ImageScaled[{-0.2, -0.2}],
+       BaseStyle->"Graphics"]}, {
+      {GrayLevel[0], Arrowheads[0], ArrowBox[{{8., 1.5}, {8., 4.}}]}, InsetBox[
+       StyleBox[
+        SubscriptBox["\<\"r\"\>", "\<\"earth\"\>"],
+        StripOnInput->False,
+        FontSize->15,
+        FontSlant->Italic], Offset[{0, 2}, {8., 2.75}], ImageScaled[{-0.2, -0.2}],
+       BaseStyle->"Graphics"]}}, 
+    {GrayLevel[1], EdgeForm[{GrayLevel[0], Opacity[0.7]}], EdgeForm[
+     None], {DiskBox[{0., 10.}, 0.], InsetBox[
+       StyleBox["\<\"\"\>",
+        StripOnInput->False,
+        FontSize->18,
+        FontSlant->Italic], {0., 10.},
+       BaseStyle->"Graphics"]}, {DiskBox[{5., 10.}, 0.], InsetBox[
+       StyleBox["\<\"\"\>",
+        StripOnInput->False,
+        FontSize->18,
+        FontSlant->Italic], {5., 10.},
+       BaseStyle->"Graphics"]}, {DiskBox[{5., 3.}, 0.], InsetBox[
+       StyleBox["\<\"\"\>",
+        StripOnInput->False,
+        FontSize->18,
+        FontSlant->Italic], {5., 3.},
+       BaseStyle->"Graphics"]}, {DiskBox[{5., 0.}, 0.], InsetBox[
+       StyleBox["\<\"\"\>",
+        StripOnInput->False,
+        FontSize->18,
+        FontSlant->Italic], {5., 0.},
+       BaseStyle->"Graphics"]}, {DiskBox[{3., 4.}, 0.], InsetBox[
+       StyleBox["\<\"\"\>",
+        StripOnInput->False,
+        FontSize->18,
+        FontSlant->Italic], {3., 4.},
+       BaseStyle->"Graphics"]}, {DiskBox[{5., 4.}, 0.], InsetBox[
+       StyleBox["\<\"\"\>",
+        StripOnInput->False,
+        FontSize->18,
+        FontSlant->Italic], {5., 4.},
+       BaseStyle->"Graphics"]}, {DiskBox[{6., 10.}, 0.], InsetBox[
+       StyleBox["\<\"\"\>",
+        StripOnInput->False,
+        FontSize->18,
+        FontSlant->Italic], {6., 10.},
+       BaseStyle->"Graphics"]}, {DiskBox[{6., 0.}, 0.], InsetBox[
+       StyleBox["\<\"\"\>",
+        StripOnInput->False,
+        FontSize->18,
+        FontSlant->Italic], {6., 0.},
+       BaseStyle->"Graphics"]}, {DiskBox[{7., 10.}, 0.], InsetBox[
+       StyleBox["\<\"\"\>",
+        StripOnInput->False,
+        FontSize->18,
+        FontSlant->Italic], {7., 10.},
+       BaseStyle->"Graphics"]}, {DiskBox[{7., 1.5}, 0.], InsetBox[
+       StyleBox["\<\"\"\>",
+        StripOnInput->False,
+        FontSize->18,
+        FontSlant->Italic], {7., 1.5},
+       BaseStyle->"Graphics"]}, {DiskBox[{8., 1.5}, 0.], InsetBox[
+       StyleBox["\<\"\"\>",
+        StripOnInput->False,
+        FontSize->18,
+        FontSlant->Italic], {8., 1.5},
+       BaseStyle->"Graphics"]}, {DiskBox[{8., 4.}, 0.], InsetBox[
+       StyleBox["\<\"\"\>",
+        StripOnInput->False,
+        FontSize->18,
+        FontSlant->Italic], {8., 4.},
+       BaseStyle->"Graphics"]}}}, {
+    BezierCurveBox[{{4.5, 1.}, {4.75, 1.3000000000000007`}, {5, 1.}}], 
+    StyleBox[InsetBox["\[Theta]", {4.75, 0.9}],
+     StripOnInput->False,
+     FontSize->15]}},
+  FrameTicks->None,
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->40,
+  ImageSize->Large]], "Output",
+ CellChangeTimes->{
+  3.6985084169484296`*^9, {3.698508573164031*^9, 3.6985085790395684`*^9}, 
+   3.698508847434821*^9, 3.698508894559564*^9, 3.698509008250098*^9, 
+   3.6985092420648084`*^9, {3.6985095005350037`*^9, 3.6985095506442485`*^9}, 
+   3.698509700229313*^9, {3.6985097658995247`*^9, 3.698509782189697*^9}, {
+   3.6985099285791535`*^9, 3.698509953923599*^9}, 3.6985100037150154`*^9, 
+   3.6985101179783993`*^9, 3.6985101578459115`*^9, 3.6985104562237005`*^9, 
+   3.698510538438929*^9, 3.6985105735738735`*^9, 3.698510744902956*^9, 
+   3.698510910000431*^9}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   TagBox[GridBox[{
+      {
+       TemplateBox[{
+        "\"Using the Small Angle Approximation, and examining the diagram \
+yields the Formula : \"",TagBox[
+          RowBox[{
+            SubscriptBox["A", "\"earth suface\""], "\[LongEqual]", 
+            RowBox[{"\[Pi]", " ", 
+              SuperscriptBox[
+               RowBox[{"(", 
+                 RowBox[{
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    SubscriptBox["d", "tot"], "-", 
+                    SubscriptBox["d", "em"]}], ")"}], "+", 
+                    SubscriptBox["r", "earth"]}], ")"}], " ", "\[Theta]"}], 
+                 ")"}], "2"]}]}], HoldForm],"\" where \[Theta] = \"",TagBox[
+          FractionBox[
+           SubscriptBox["r", "moon"], 
+           SubscriptBox["d", "tot"]], HoldForm]},
+        "RowDefault"]},
+      {
+       TemplateBox[{
+        "\"Thus Yielding \"",SubscriptBox["A", "\"earth suface\""],
+         "\" \[LongEqual] \"",TagBox[
+          RowBox[{"\[Pi]", " ", 
+            SuperscriptBox[
+             RowBox[{"(", 
+               FractionBox[
+                RowBox[{
+                  RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"377770", "-", "372027"}], ")"}], "+", "6378"}], 
+                    ")"}], " ", "1738"}], "377700"], ")"}], "2"]}], HoldForm],
+         "\" \[LongEqual] \"","9773.100161069762`",
+         "\" \\!\\(\\*SuperscriptBox[\\(km\\), \\(2\\)]\\)\""},
+        "RowDefault"]}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{"Columns" -> {{Left}}},
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+    "Column"],
+   StripOnInput->False,
+   FontSize->20], TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.6985084169484296`*^9, {3.698508573164031*^9, 3.6985085790395684`*^9}, 
+   3.698508847434821*^9, 3.698508894559564*^9, 3.698509008250098*^9, 
+   3.6985092420648084`*^9, {3.6985095005350037`*^9, 3.6985095506442485`*^9}, 
+   3.698509700229313*^9, {3.6985097658995247`*^9, 3.698509782189697*^9}, {
+   3.6985099285791535`*^9, 3.698509953923599*^9}, 3.6985100037150154`*^9, 
+   3.6985101179783993`*^9, 3.6985101578459115`*^9, 3.6985104562237005`*^9, 
+   3.698510538438929*^9, 3.6985105735738735`*^9, 3.698510744902956*^9, 
+   3.6985109100160575`*^9}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox["\<\"\[Pi] in the \\!\\(\\*SuperscriptBox[\\(Sky\\), \\(4\\)]\\) : \
+Problem 3\"\>",
+   StripOnInput->False,
+   FontSize->30], TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.6985084169484296`*^9, {3.698508573164031*^9, 3.6985085790395684`*^9}, 
+   3.698508847434821*^9, 3.698508894559564*^9, 3.698509008250098*^9, 
+   3.6985092420648084`*^9, {3.6985095005350037`*^9, 3.6985095506442485`*^9}, 
+   3.698509700229313*^9, {3.6985097658995247`*^9, 3.698509782189697*^9}, {
+   3.6985099285791535`*^9, 3.698509953923599*^9}, 3.6985100037150154`*^9, 
+   3.6985101179783993`*^9, 3.6985101578459115`*^9, 3.6985104562237005`*^9, 
+   3.698510538438929*^9, 3.6985105735738735`*^9, 3.698510744902956*^9, 
+   3.6985109100160575`*^9}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   TagBox[GridBox[{
+      {
+       TemplateBox[{
+        "\"Keplers third law, when one mass is much larger than the other, \
+takes the form of \"",TagBox[
+          RowBox[{
+            FractionBox[
+             SuperscriptBox["T", "2"], 
+             SuperscriptBox["a", "3"]], "\[TildeTilde]", 
+            FractionBox[
+             RowBox[{"4", " ", 
+               SuperscriptBox["\[Pi]", "2"]}], 
+             RowBox[{"G", " ", "M"}]]}], HoldForm]},
+        "RowDefault"]},
+      {
+       TemplateBox[{
+        "\"For this particular system: G \[LongEqual] \"",
+         TemplateBox[{"6.673840000000000085761204361`3.620255807923255*^-11", 
+           RowBox[{
+             SuperscriptBox["\"m\"", "3"], "\[NegativeMediumSpace]", "\"/(\"",
+              "\[InvisibleSpace]", "\"kg\"", "\[ThinSpace]", 
+             SuperscriptBox["\"s\"", "2"], "\[InvisibleSpace]", "\")\""}], 
+           "meters cubed per kilogram second squared", 
+           FractionBox[
+            SuperscriptBox["\"Meters\"", "3"], 
+            RowBox[{"\"Kilograms\"", " ", 
+              SuperscriptBox["\"Seconds\"", "2"]}]]}, "QuantityTF", 
+          SyntaxForm -> Mod],"\", M \[LongEqual] \"",
+         TemplateBox[{"5.685`5.*^26", "\"kg\"", "kilograms", "\"Kilograms\""},
+           "QuantityTF", SyntaxForm -> Mod],
+         "\", a \[LongEqual] \\!\\(\\*SubscriptBox[\\(a\\), \\(sc\\)]\\) \
+\[LongEqual] \"",
+         TemplateBox[{"1274828", "\"km\"", "kilometers", "\"Kilometers\""}, 
+          "QuantityTF", SyntaxForm -> Mod]},
+        "RowDefault"]},
+      {
+       TemplateBox[{
+        "\"Therefore the average period of each orbit is \
+\\!\\(\\*SubscriptBox[\\(T\\), \\(sc\\)]\\) \[LongEqual] \"",
+         TemplateBox[{
+          "1.4682639271594721403877298`3.903538344994545*^6", "\"s\"", 
+           "seconds", "\"Seconds\""}, "QuantityTF", SyntaxForm -> Mod],
+         "\" which is \"",
+         TemplateBox[{
+          "16.99379545323463125448761382936798978747`3.903538344994545", 
+           "\"days\"", "days", "\"Days\""}, "QuantityTF", SyntaxForm -> Mod]},
+        "RowDefault"]},
+      {
+       TemplateBox[{
+        "\"This means that the total will be 22 times longer, thus the \
+spacecraft will crash approximately \"",
+         TemplateBox[{
+          "373.86349997116188759872750424609577532439`3.903538344994545", 
+           "\"days\"", "days", "\"Days\""}, "QuantityTF", SyntaxForm -> Mod],
+         "\" after April 23, 2017 or on \"","\"May 01, 2018\""},
+        "RowDefault"]}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{"Columns" -> {{Left}}},
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+    "Column"],
+   StripOnInput->False,
+   FontSize->20], TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.6985084169484296`*^9, {3.698508573164031*^9, 3.6985085790395684`*^9}, 
+   3.698508847434821*^9, 3.698508894559564*^9, 3.698509008250098*^9, 
+   3.6985092420648084`*^9, {3.6985095005350037`*^9, 3.6985095506442485`*^9}, 
+   3.698509700229313*^9, {3.6985097658995247`*^9, 3.698509782189697*^9}, {
+   3.6985099285791535`*^9, 3.698509953923599*^9}, 3.6985100037150154`*^9, 
+   3.6985101179783993`*^9, 3.6985101578459115`*^9, 3.6985104562237005`*^9, 
+   3.698510538438929*^9, 3.6985105735738735`*^9, 3.698510744902956*^9, 
+   3.698510910078558*^9}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox["\<\"\[Pi] in the \\!\\(\\*SuperscriptBox[\\(Sky\\), \\(4\\)]\\) : \
+Problem 4\"\>",
+   StripOnInput->False,
+   FontSize->30], TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.6985084169484296`*^9, {3.698508573164031*^9, 3.6985085790395684`*^9}, 
+   3.698508847434821*^9, 3.698508894559564*^9, 3.698509008250098*^9, 
+   3.6985092420648084`*^9, {3.6985095005350037`*^9, 3.6985095506442485`*^9}, 
+   3.698509700229313*^9, {3.6985097658995247`*^9, 3.698509782189697*^9}, {
+   3.6985099285791535`*^9, 3.698509953923599*^9}, 3.6985100037150154`*^9, 
+   3.6985101179783993`*^9, 3.6985101578459115`*^9, 3.6985104562237005`*^9, 
+   3.698510538438929*^9, 3.6985105735738735`*^9, 3.698510744902956*^9, 
+   3.698510910094186*^9}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   TagBox[GridBox[{
+      {"\<\"Taken from: \
+http://www.madsci.org/posts/archives/2006-07/1152815859.As.r.html Credit: \
+Bryan Dunne, Instructor, Astronomy, University of Illinois\\n\\n First, we \
+need to define the inner and outer edges of a habitable zone. Life needs \
+liquid water, so lets define the \\\"HZ\\\" as the distances over which the \
+average surface temperature of the planet will be between the temperatures at \
+which water boils (100 C, or 373 K) and freezes (0 C, or 273 K). Now lets see \
+how to compute the average surface temperature of the planet.\\n\\nThe \
+planet's surface is heated by solar radiation. The amount of solar energy the \
+planet will receive depends 1) the luminosity (total energy output) of its \
+sun, 2) how big the planet is, 3) how reflective the planet is, and 4) how \
+far it is from its sun.\\n\"\>"},
+      {"\<\"\\nLets call the luminosity of the sun \\!\\(\\*SubscriptBox[\\(L\
+\\), \\(*\\)]\\). The radius of the planet is \\!\\(\\*SubscriptBox[\\(R\\), \
+\\(0\\)]\\), and so the planet will collect solar energy over an area \
+\\!\\(\\*SuperscriptBox[SubscriptBox[\\(\[Pi]R\\), \\(0\\)], \\(2\\)]\\) (the \
+area of a circle). The reflectivity of the planet, called its \\\"albedo\\\" \
+(A in our formula), is the fraction of solar radiation that is reflected back \
+to space; Earth's albedo is about 0.3. We are interested in 1-A, how much of \
+the solar radiation goes into heating the planet. The distance from the \
+planet to the sun is d. The sun's total energy (luminosity) will be spread \
+out over a sphere with area 4\\!\\(\\*SuperscriptBox[\\(\[Pi]d\\), \
+\\(2\\)]\\).\\n\\nYielding the amount of Solar energy warming the planet = \
+\\!\\(\\*FractionBox[\\(\\*SubscriptBox[\\(L\\), \\(*\\)] \
+\\*SuperscriptBox[SubscriptBox[\\(\[Pi]R\\), \\(0\\)], \\(2\\)] \\((1 - A)\\)\
+\\), \\((4 \\*SuperscriptBox[\\(\[Pi]d\\), \\(2\\)])\\)]\\)\\n\"\>"},
+      {"\<\"\\nIn order to stay at a steady surface temperature, the planet \
+must radiate away an amount of energy equal to the amount it gets from its \
+sun. This energy will be emitted as thermal or \\\"blackbody\\\" radiation. \
+Assuming the energy is emitted evenly from all over the planet's \
+surface,\\n\\nEnergy emitted by the planet = \
+4\\!\\(\\*SuperscriptBox[SubscriptBox[\\(\[Pi]R\\), \\(0\\)], \
+\\(2\\)]\\)\\!\\(\\*SuperscriptBox[\\(\[Sigma]T\\), \\(4\\)]\\), where \\!\\(\
+\\*SubscriptBox[\\(R\\), \\(0\\)]\\) is again the radius of the planet, T is \
+the average surface temperature of the planet (in Kelvins), and \[Sigma] is a \
+physical constant known as Boltzmann's constant (equal to \
+1.3806503\[Times]10-23 m2 kg s-2 K-1).\\n\"\>"},
+      {"\<\"\\nTherefore when the planet is in a steady state, one gets \
+4\\!\\(\\*SuperscriptBox[SubscriptBox[\\(\[Pi]R\\), \\(0\\)], \
+\\(2\\)]\\)\\!\\(\\*SuperscriptBox[\\(\[Sigma]T\\), \\(4\\)]\\) = \
+\\!\\(\\*FractionBox[\\(\\*SubscriptBox[\\(L\\), \\(*\\)] \
+\\*SuperscriptBox[SubscriptBox[\\(\[Pi]R\\), \\(0\\)], \\(2\\)] \\((1 - A)\\)\
+\\), \\((4 \\*SuperscriptBox[\\(\[Pi]d\\), \\(2\\)])\\)]\\)\\n\\nYou can then \
+solve this equation for d. Finally, given the luminosity of the planet's sun \
+and assuming an albedo (as I mentioned above, the Earth's albedo is about \
+0.3), plug-in T=192 K (-81.15 \[Degree]C or -114.07 \[Degree]F) and T=295 K \
+(-21.85 \[Degree]C or 71.33 \[Degree]F) to find the outer and inner limits of \
+the habitable zone, respectively.\"\>"},
+      {"\<\"\"\>"},
+      {"\<\"\"\>"},
+      {
+       TemplateBox[{
+        "\"Solving the energy equation for a planet, given above, for d gives \
+\"",RowBox[{"d", "\[LongEqual]", 
+           FractionBox[
+            SqrtBox[
+             RowBox[{"L", "-", 
+               RowBox[{"A", " ", "L"}]}]], 
+            RowBox[{"4", " ", 
+              SqrtBox["\[Pi]"], " ", 
+              SqrtBox["\[Sigma]"], " ", 
+              SuperscriptBox["T", "2"]}]]}]},
+        "RowDefault"]},
+      {
+       TemplateBox[{
+        "\"We can now judge whether or not an planet is in the habitable \
+zone.\""},
+        "RowDefault"]},
+      {
+       TemplateBox[{
+        "\"When T = 192-295 K, A = 0.3, L = \
+2.0097*\\!\\(\\*SuperscriptBox[\\(10\\), \\(23\\)]\\) Watts, \
+\[Sigma]=5.67*\\!\\(\\*SuperscriptBox[\\(10\\), \\(-8\\)]\\) \
+W/(\\!\\(\\*SuperscriptBox[\\(m\\), \\(2\\)]\\) \
+\\!\\(\\*SuperscriptBox[\\(K\\), \\(4\\)]\\)) the habitable zone boundaries \
+are :\""},
+        "RowDefault"]},
+      {
+       TemplateBox[{
+        "\"d\\!\\(\\*SubscriptBox[\\(|\\), \\(T = \\(\\(192\\)  \
+\\(K\\)\\(\\\\ \\)\\)\\)]\\) \[LongEqual] \"","6.026785319800109`*^9",
+         "\" meters or \"","0.04028657153741232`",
+         "\" AU and d\\!\\(\\*SubscriptBox[\\(|\\), \\(T = \\(\\(295\\)  \\(K\
+\\)\\(\\\\ \\)\\)\\)]\\) \[LongEqual] \"","2.552960804701077`*^9",
+         "\" meters or \"","0.017065488918760904`","\" AU\""},
+        "RowDefault"]},
+      {
+       TemplateBox[{
+        "\"Using Kepler's Third Law, where the orbits are approximatly \
+circular, we solve for a :\"",TagBox[
+          RowBox[{
+            FractionBox[
+             SuperscriptBox["P", "2"], 
+             SuperscriptBox["a", "3"]], "\[TildeTilde]", 
+            FractionBox[
+             RowBox[{"4", " ", 
+               SuperscriptBox["\[Pi]", "2"]}], 
+             RowBox[{"G", " ", "M"}]]}], HoldForm],"\" \[RightArrow] \"",
+         RowBox[{"a", "\[LongEqual]", 
+           FractionBox[
+            RowBox[{
+              RadicalBox["G", "3"], " ", 
+              RadicalBox["M", "3"], " ", 
+              SuperscriptBox["P", 
+               RowBox[{"2", "/", "3"}]]}], 
+            SuperscriptBox[
+             RowBox[{"(", 
+               RowBox[{"2", " ", "\[Pi]"}], ")"}], 
+             RowBox[{"2", "/", "3"}]]]}]},
+        "RowDefault"]},
+      {
+       TemplateBox[{
+        "\"We can now figure out if a planet is in the habitable zone or not.\
+\""},
+        "RowDefault"]}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{"Columns" -> {{Left}}},
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+    "Column"],
+   StripOnInput->False,
+   FontSize->20], TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.6985084169484296`*^9, {3.698508573164031*^9, 3.6985085790395684`*^9}, 
+   3.698508847434821*^9, 3.698508894559564*^9, 3.698509008250098*^9, 
+   3.6985092420648084`*^9, {3.6985095005350037`*^9, 3.6985095506442485`*^9}, 
+   3.698509700229313*^9, {3.6985097658995247`*^9, 3.698509782189697*^9}, {
+   3.6985099285791535`*^9, 3.698509953923599*^9}, 3.6985100037150154`*^9, 
+   3.6985101179783993`*^9, 3.6985101578459115`*^9, 3.6985104562237005`*^9, 
+   3.698510538438929*^9, 3.6985105735738735`*^9, 3.698510744902956*^9, 
+   3.698510910344197*^9}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   TagBox[GridBox[{
+      {"\<\"Name of Planet\"\>", "\<\"Orbital Distance in Meters\"\>", \
+"\<\"Orbital Distance in AU\"\>", "\<\" Habitable?\"\>"},
+      {"\<\"TRAPPIST-1b\"\>", 
+       TemplateBox[{"1.6611655496567981`*^9","\"m\"","meters","\"Meters\""},
+        "QuantityTF"], 
+       TemplateBox[{
+        "0.011104205841191817`","\"au\"","astronomical units",
+         "\"AstronomicalUnit\""},
+        "QuantityTF"], "\<\"Not Possibly Habitable \[SadSmiley]\"\>"},
+      {"\<\"TRAPPIST-1c\"\>", 
+       TemplateBox[{"2.275217908665279`*^9","\"m\"","meters","\"Meters\""},
+        "QuantityTF"], 
+       TemplateBox[{
+        "0.015208892332618467`","\"au\"","astronomical units",
+         "\"AstronomicalUnit\""},
+        "QuantityTF"], "\<\"Not Possibly Habitable \[SadSmiley]\"\>"},
+      {"\<\"TRAPPIST-1d\"\>", 
+       TemplateBox[{"3.2053109132380986`*^9","\"m\"","meters","\"Meters\""},
+        "QuantityTF"], 
+       TemplateBox[{
+        "0.021426180053497904`","\"au\"","astronomical units",
+         "\"AstronomicalUnit\""},
+        "QuantityTF"], "\<\"Possibly Habitable \[HappySmiley]\"\>"},
+      {"\<\"TRAPPIST-1e\"\>", 
+       TemplateBox[{"4.2117538145529585`*^9","\"m\"","meters","\"Meters\""},
+        "QuantityTF"], 
+       TemplateBox[{
+        "0.028153835310925707`","\"au\"","astronomical units",
+         "\"AstronomicalUnit\""},
+        "QuantityTF"], "\<\"Possibly Habitable \[HappySmiley]\"\>"},
+      {"\<\"TRAPPIST-1f\"\>", 
+       TemplateBox[{"5.541964108557603`*^9","\"m\"","meters","\"Meters\""},
+        "QuantityTF"], 
+       TemplateBox[{
+        "0.037045741912138073`","\"au\"","astronomical units",
+         "\"AstronomicalUnit\""},
+        "QuantityTF"], "\<\"Possibly Habitable \[HappySmiley]\"\>"},
+      {"\<\"TRAPPIST-1g\"\>", 
+       TemplateBox[{"6.741785283022519`*^9","\"m\"","meters","\"Meters\""},
+        "QuantityTF"], 
+       TemplateBox[{
+        "0.045066051083991254`","\"au\"","astronomical units",
+         "\"AstronomicalUnit\""},
+        "QuantityTF"], "\<\"Not Possibly Habitable \[SadSmiley]\"\>"},
+      {"\<\"TRAPPIST-1h\"\>", 
+       TemplateBox[{"9.295684157786627`*^9","\"m\"","meters","\"Meters\""},
+        "QuantityTF"], 
+       TemplateBox[{
+        "0.062137810613815285`","\"au\"","astronomical units",
+         "\"AstronomicalUnit\""},
+        "QuantityTF"], "\<\"Not Possibly Habitable \[SadSmiley]\"\>"}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[2.0999999999999996`]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    Function[BoxForm`e$, 
+     TableForm[BoxForm`e$]]],
+   StripOnInput->False,
+   FontSize->15], TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.6985084169484296`*^9, {3.698508573164031*^9, 3.6985085790395684`*^9}, 
+   3.698508847434821*^9, 3.698508894559564*^9, 3.698509008250098*^9, 
+   3.6985092420648084`*^9, {3.6985095005350037`*^9, 3.6985095506442485`*^9}, 
+   3.698509700229313*^9, {3.6985097658995247`*^9, 3.698509782189697*^9}, {
+   3.6985099285791535`*^9, 3.698509953923599*^9}, 3.6985100037150154`*^9, 
+   3.6985101179783993`*^9, 3.6985101578459115`*^9, 3.6985104562237005`*^9, 
+   3.698510538438929*^9, 3.6985105735738735`*^9, 3.698510744902956*^9, 
+   3.698510910422325*^9}]
+}, Open  ]]
+},
+WindowSize->{1366, 685},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+PrintingCopies->1,
+PrintingPageRange->{32000, 32000},
+PrintingOptions->{"Magnification"->1.,
+"PaperOrientation"->"Portrait",
+"PaperSize"->{612, 792}},
+FrontEndVersion->"10.1 for Microsoft Windows (64-bit) (March 23, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 40858, 976, 2447, "Input"],
+Cell[41441, 1000, 759, 14, 63, "Output"],
+Cell[42203, 1016, 1744, 41, 101, "Output"],
+Cell[43950, 1059, 759, 14, 63, "Output"],
+Cell[44712, 1075, 5644, 137, 709, "Output"],
+Cell[50359, 1214, 2416, 58, 103, "Output"],
+Cell[52778, 1274, 759, 14, 63, "Output"],
+Cell[53540, 1290, 3347, 74, 151, "Output"],
+Cell[56890, 1366, 757, 14, 63, "Output"],
+Cell[57650, 1382, 6755, 134, 1186, "Output"],
+Cell[64408, 1518, 3547, 78, 206, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
