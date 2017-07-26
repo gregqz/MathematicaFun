@@ -12,4 +12,6 @@ for every .nb file, there is an .nbcode file which contains the human readable m
 
 * pendulum.nb is a three dimensional sand pendulum simulation
 
+* emoji.nb an demonstration that mathematica can handle emoji usage in its code
+
 Every file in this repository is under the Unlicense
