@@ -1,0 +1,35 @@
+PlotDiagram[vertex_List, edge_List, args___] := 
+ Module[{v, vl, vp, e, el, es}, v = Range[Length@vertex];
+  vl = Table[vertex[[i, 1]], {i, 1, Length@vertex}];
+  vp = Table[vertex[[i, 2]], {i, 1, Length@vertex}];
+  e = Table[edge[[i, 1]], {i, 1, Length@edge}];
+  el = Table[edge[[i, 2]], {i, 1, Length@edge}];
+  es = Table[edge[[i, 3]], {i, 1, Length@edge}];
+  Graph[v, e, VertexCoordinates -> vp, 
+   VertexLabels -> 
+    Table[v[[i]] -> Placed[vl[[i]], {0.5, 0.5}], {i, 1, Length[v]}], 
+   EdgeLabels -> Table[e[[i]] -> el[[i]], {i, 1, Length[e]}], 
+   EdgeShapeFunction -> Table[e[[i]] -> es[[i]], {i, 1, Length[e]}], 
+   args, VertexLabelStyle -> Directive[Italic, 18], 
+   EdgeLabelStyle -> Directive[Italic, 15], VertexSize -> 0, 
+   VertexStyle -> Directive[EdgeForm[], White]]]
+n = 35;
+vertex = Table[{"", {RandomReal[{-1, 1}], RandomReal[{-1, 1}]}}, {i, 
+    1, n}];
+Dynamic[l]
+initim = AbsoluteTime[];
+While[Abs[AbsoluteTime[] - initim] < 20, 
+ vertex = 
+  Table[{"", 
+    vertex[[i, 
+      2]] + {RandomReal[{-1, 1}], RandomReal[{-1, 1}]}*(8/100)}, {i, 
+    1, n}];
+ edge = Table[{(Mod[i, 11] + 1) \[DirectedEdge] (Mod[i + 1, 11] + 1), 
+    Placed["", {.5, {.5, -.2}}], ({Black, Arrowheads[0], 
+       Arrow[#]} &)}, {i, 1, n}];
+ l = Colorize@
+   WatershedComponents[
+    FillingTransform[
+     ColorNegate@
+      Image@PlotDiagram[vertex, edge, ImageSize -> Large, 
+        ImagePadding -> 40], .05]]]
