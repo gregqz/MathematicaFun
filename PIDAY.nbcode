@@ -1,0 +1,241 @@
+(*PI Day Problem 1*)
+TraditionalForm@
+ Style["\[Pi] in the \!\(\*SuperscriptBox[\(Sky\), \(4\)]\) : Problem \
+1", 30]
+CircularityRatio[A_: 0, p_: 1] := 
+ Row[{"Circularity Ratio for A = ", ToString[A], " and p = ", 
+   ToString[p], " : ", Style[HoldForm[(4*Pi*A)/p^2]], 
+   " \[LongEqual] ", ToString[N[(4*Pi*A)/p^2]], 
+   If[N[(4*Pi*A)/p^2] < .925, 
+    " ; Object may have impacted at an angle under 20\[Degree] and \
+created a butterfly ejecta pattern",]}]
+TraditionalForm@
+ Style[Column[CircularityRatio @@@ {{32, 21}, {67, 30}}], 20]
+
+(*PI Day Problem 2*)
+TraditionalForm@
+ Style["\[Pi] in the \!\(\*SuperscriptBox[\(Sky\), \(4\)]\) : Problem \
+2", 30]
+PlotDiagram[vertex_List, edge_List, args___] := 
+ Module[{v, vl, vp, e, el, es}, v = Range[Length@vertex];
+  vl = Table[vertex[[i, 1]], {i, 1, Length@vertex}];
+  vp = Table[vertex[[i, 2]], {i, 1, Length@vertex}];
+  e = Table[edge[[i, 1]], {i, 1, Length@edge}];
+  el = Table[edge[[i, 2]], {i, 1, Length@edge}];
+  es = Table[edge[[i, 3]], {i, 1, Length@edge}];
+  Graph[v, e, VertexCoordinates -> vp, 
+   VertexLabels -> 
+    Table[v[[i]] -> Placed[vl[[i]], {0.5, 0.5}], {i, 1, Length[v]}], 
+   EdgeLabels -> Table[e[[i]] -> el[[i]], {i, 1, Length[e]}], 
+   EdgeShapeFunction -> Table[e[[i]] -> es[[i]], {i, 1, Length[e]}], 
+   args, VertexLabelStyle -> Directive[Italic, 18], 
+   EdgeLabelStyle -> Directive[Italic, 15], VertexSize -> 0, 
+   VertexStyle -> Directive[EdgeForm[], White]]] 
+pts = {{4.5, 4.5*-2 + 10}, {(4.5 + 5)/2, 4.5*-2 + 10.3}, {5, 
+    4.5*-2 + 10}};
+vertex = {{"", {0, 10}}, {"", {5, 10}}, {"", {5, 3}}, {"", {5, 
+     0}}, {"", {3, -3*2 + 10}}, {"", {5, -3*2 + 10}}, {"", {6, 
+     10}}, {"", {6, 0}}, {"", {7, 10}}, {"", {7, 1.5}}, {"", {8, 
+     1.5}}, {"", {8, -3*2 + 10}}};
+edge = {{1 \[DirectedEdge] 2, 
+    Placed[Subscript["r", 
+      "Moon"], {.5, {.5, -.2}}], ({Black, Arrowheads[0], 
+       Arrow[#]} &)}, {2 \[DirectedEdge] 3, 
+    Placed[
+     "", {.7, {-.5, -.2}}], ({Black, Arrowheads[0], Arrow[#]} &)},
+   {3 \[DirectedEdge] 4, 
+    Placed["x", {.5, {1.3, -.2}}], ({Black, Arrowheads[0], 
+       Arrow[#]} &)},
+   {4 \[DirectedEdge] 1, 
+    Placed["", {.5, {.5, -.2}}], ({Black, Arrowheads[0], Arrow[#]} &)},
+   {5 \[DirectedEdge] 6, 
+    Placed["a", {.5, {.5, -.2}}], ({Black, Arrowheads[0], 
+       Arrow[#]} &)},
+   {7 \[DirectedEdge] 8, 
+    Placed[Subscript["d", 
+      "tot"], {.5, {-.2, -.2}}], ({Black, Arrowheads[0], Arrow[#]} &)},
+   {9 \[DirectedEdge] 10, 
+    Placed[Subscript["d", 
+      "em"], {.5, {-.2, -.2}}], ({Black, Arrowheads[0], Arrow[#]} &)},
+   {11 \[DirectedEdge] 12, 
+    Placed[Subscript["r", 
+      "earth"], {.5, {-.2, -.2}}], ({Black, Arrowheads[0], 
+       Arrow[#]} &)}};
+graph = Show[
+  PlotDiagram[vertex, edge, ImageSize -> Large, ImagePadding -> 40], 
+  Graphics[{BezierCurve[pts], Style[Text[\[Theta], {4.75, .9}], 15]}]]
+probl2 = Column[{Row[{"Using the Small Angle Approximation, and \
+examining the diagram yields the Formula : ", 
+      HoldForm[
+       Subscript[A, 
+         "earth suface"] == \[Pi]*(((Subscript[d, tot] - Subscript[d, 
+               em]) + Subscript[r, earth])*\[Theta])^2], 
+      " where \[Theta] = ", 
+      HoldForm[Subscript[r, moon]/Subscript[d, tot]]}], 
+    Row[{"Thus Yielding ", Subscript[A, "earth suface"], 
+      " \[LongEqual] ", 
+      HoldForm[ \[Pi]*(((377770 - 372027) + 6378)*(1738/377700))^2], 
+      " \[LongEqual] ", 
+      N[\[Pi]*(((377770 - 372027) + 6378)*(1738/377700))^2], 
+      " \!\(\*SuperscriptBox[\(km\), \(2\)]\)"}]}];
+TraditionalForm@Style[probl2, 20]
+
+(*PI Day Problem 3*)
+TraditionalForm@
+ Style["\[Pi] in the \!\(\*SuperscriptBox[\(Sky\), \(4\)]\) : Problem \
+3", 30]
+prob3 = Column[{Row[{"Keplers third law, when one mass is much larger \
+than the other, takes the form of ", 
+      HoldForm[T^2/a^3 \[TildeTilde] (4*\[Pi]^2)/(G*M)]}], 
+    Row[{"For this particular system: G \[LongEqual] ", 
+      UnitConvert[Quantity["GravitationalConstant"], 
+       "meters^3/(kilogram*second^2)"], ", M \[LongEqual] " , 
+      UnitConvert[Quantity["SaturnMass"], "SI"], 
+      ", a \[LongEqual] \!\(\*SubscriptBox[\(a\), \(sc\)]\) \
+\[LongEqual] ", Quantity[1274828, "Kilometers"]}], 
+    Row[{"Therefore the average period of each orbit is \
+\!\(\*SubscriptBox[\(T\), \(sc\)]\) \[LongEqual] ", 
+      secorbit = (((4*\[Pi]^2)/(UnitConvert[
+             Quantity["GravitationalConstant"]*Quantity["SaturnMass"],
+              "meter^3/second^2"]))*
+         Quantity[1274828, "Kilometers"]^3)^(1/2), " which is ", 
+      dayorbit = UnitConvert[secorbit, "Days"]}], 
+    Row[{"This means that the total will be 22 times longer, thus the \
+spacecraft will crash approximately ", 22*dayorbit, 
+      " after April 23, 2017 or on ", 
+      DateString[
+       DatePlus[DateObject[{2017, 4, 23}], 
+        QuantityMagnitude[22*dayorbit]], {"MonthName", " ", "Day", 
+        ", ", "Year"}]}]}];
+TraditionalForm@Style[prob3, 20]
+
+(*PI Day Problem 4*)
+TraditionalForm@
+ Style["\[Pi] in the \!\(\*SuperscriptBox[\(Sky\), \(4\)]\) : Problem \
+4", 30]
+prob4body = 
+  Column[{ "Taken from: \
+http://www.madsci.org/posts/archives/2006-07/1152815859.As.r.html \
+Credit: Bryan Dunne, Instructor, Astronomy, University of Illinois
+    
+     First, we need to define the inner and outer edges of a \
+habitable zone. Life needs liquid water, so lets define the \"HZ\" as \
+the distances over which the average surface temperature of the \
+planet will be between the temperatures at which water boils (100 C, \
+or 373 K) and freezes (0 C, or 273 K). Now lets see how to compute \
+the average surface temperature of the planet.
+    
+    The planet's surface is heated by solar radiation. The amount of \
+solar energy the planet will receive depends 1) the luminosity (total \
+energy output) of its sun, 2) how big the planet is, 3) how \
+reflective the planet is, and 4) how far it is from its sun.
+    ", "
+    Lets call the luminosity of the sun \!\(\*SubscriptBox[\(L\), \(*\
+\)]\). The radius of the planet is \!\(\*SubscriptBox[\(R\), \
+\(0\)]\), and so the planet will collect solar energy over an area \!\
+\(\*SuperscriptBox[SubscriptBox[\(\[Pi]R\), \(0\)], \(2\)]\) (the \
+area of a circle). The reflectivity of the planet, called its \
+\"albedo\" (A in our formula), is the fraction of solar radiation \
+that is reflected back to space; Earth's albedo is about 0.3. We are \
+interested in 1-A, how much of the solar radiation goes into heating \
+the planet. The distance from the planet to the sun is d. The sun's \
+total energy (luminosity) will be spread out over a sphere with area \
+4\!\(\*SuperscriptBox[\(\[Pi]d\), \(2\)]\).
+    
+    Yielding the amount of Solar energy warming the planet = \
+\!\(\*FractionBox[\(\*SubscriptBox[\(L\), \(*\)] \
+\*SuperscriptBox[SubscriptBox[\(\[Pi]R\), \(0\)], \(2\)] \((1 - \
+A)\)\), \((4 \*SuperscriptBox[\(\[Pi]d\), \(2\)])\)]\)
+    ", "
+    In order to stay at a steady surface temperature, the planet must \
+radiate away an amount of energy equal to the amount it gets from its \
+sun. This energy will be emitted as thermal or \"blackbody\" \
+radiation. Assuming the energy is emitted evenly from all over the \
+planet's surface,
+    
+    Energy emitted by the planet = \
+4\!\(\*SuperscriptBox[SubscriptBox[\(\[Pi]R\), \(0\)], \
+\(2\)]\)\!\(\*SuperscriptBox[\(\[Sigma]T\), \(4\)]\), where \
+\!\(\*SubscriptBox[\(R\), \(0\)]\) is again the radius of the planet, \
+T is the average surface temperature of the planet (in Kelvins), and \
+\[Sigma] is a physical constant known as Boltzmann's constant (equal \
+to 1.3806503\[Times]10-23 m2 kg s-2 K-1).
+    ", "
+    Therefore when the planet is in a steady state, one gets \
+4\!\(\*SuperscriptBox[SubscriptBox[\(\[Pi]R\), \(0\)], \
+\(2\)]\)\!\(\*SuperscriptBox[\(\[Sigma]T\), \(4\)]\) = \
+\!\(\*FractionBox[\(\*SubscriptBox[\(L\), \(*\)] \
+\*SuperscriptBox[SubscriptBox[\(\[Pi]R\), \(0\)], \(2\)] \((1 - \
+A)\)\), \((4 \*SuperscriptBox[\(\[Pi]d\), \(2\)])\)]\)
+    
+    You can then solve this equation for d. Finally, given the \
+luminosity of the planet's sun and assuming an albedo (as I mentioned \
+above, the Earth's albedo is about 0.3), plug-in T=192 K (-81.15 \
+\[Degree]C or -114.07 \[Degree]F) and T=295 K (-21.85 \[Degree]C or \
+71.33 \[Degree]F) to find the outer and inner limits of the habitable \
+zone, respectively.", "", "", 
+    Row[{"Solving the energy equation for a planet, given above, for \
+d gives ", 
+      Solve[ 4 \[Pi]*R^2*\[Sigma]*T^4 == (
+          L*\[Pi]*R^2 (1 - A))/(4 \[Pi]*d^2), d][[2, 
+        1]] /. {Rule[x_, y_] -> x == y }}], 
+    Row[{"We can now judge whether or not an planet is in the \
+habitable zone." }], 
+    Row[{"When T = 192-295 K, A = 0.3, L = \
+2.0097*\!\(\*SuperscriptBox[\(10\), \(23\)]\) Watts, \[Sigma]=5.67*\!\
+\(\*SuperscriptBox[\(10\), \(-8\)]\) W/(\!\(\*SuperscriptBox[\(m\), \
+\(2\)]\) \!\(\*SuperscriptBox[\(K\), \(4\)]\)) the habitable zone \
+boundaries are :"}], 
+    Row[{"d\!\(\*SubscriptBox[\(|\), \(T = \(\(192\)  \(K\)\(\\\ \)\)\
+\)]\) \[LongEqual] ", 
+      dout = Solve[ 
+         4 \[Pi]*R^2*\[Sigma]*T^4 == (
+           L*\[Pi]*R^2 (1 - A))/(4 \[Pi]*d^2) /. {T -> 192, A -> .3, 
+           L -> 2.0097*10^23, \[Sigma] -> 5.67*10^-8}, d][[2, 1, 2]], 
+      " meters or ", 
+      QuantityMagnitude[
+       UnitConvert[Quantity[dout, "meters"], "AstronomicalUnit"]], 
+      " AU and d\!\(\*SubscriptBox[\(|\), \(T = \(\(295\)  \(K\)\(\\\ \
+\)\)\)]\) \[LongEqual] ", 
+      din = Solve[ 
+         4 \[Pi]*R^2*\[Sigma]*T^4 == (
+           L*\[Pi]*R^2 (1 - A))/(4 \[Pi]*d^2) /. {T -> 295, A -> .3, 
+           L -> 2.0097*10^23, \[Sigma] -> 5.67*10^-8}, d][[2, 1, 2]], 
+      " meters or ", 
+      QuantityMagnitude[
+       UnitConvert[Quantity[din, "meters"], "AstronomicalUnit"]], 
+      " AU"}], 
+    Row[{"Using Kepler's Third Law, where the orbits are approximatly \
+circular, we solve for a :", 
+      HoldForm[P^2/a^3 \[TildeTilde] (4*\[Pi]^2)/(G*M)], 
+      " \[RightArrow] ", 
+      Solve[ P^2/a^3 == (4*\[Pi]^2)/(G*M), a][[1, 
+        1]] /. {Rule[x_, y_] -> x == y }}], 
+    Row[{"We can now figure out if a planet is in the habitable zone \
+or not."}]}];
+daylist = {1.51087081, 2.4218233, 4.049610, 6.099615, 9.206690, 
+   12.35294, 20.0000};
+yearlist = 
+  QuantityMagnitude[UnitConvert[Quantity[#, "Days"], "Years"]] & /@ 
+   daylist;
+resulttable = 
+  Table[{"TRAPPIST-1" <> Alphabet[][[i + 1]], 
+    tem = (Quantity[1.06198*10^19, 
+        "meters^3/(second^2)"]*(Quantity[yearlist[[i]], 
+          "Years"]/(2*Pi))^2)^(1/3), 
+    temau = UnitConvert[tem, "AstronomicalUnit"], 
+    If[QuantityMagnitude[
+       UnitConvert[Quantity[din, "meters"], "AstronomicalUnit"]] <= 
+      QuantityMagnitude[temau] <= 
+      QuantityMagnitude[
+       UnitConvert[Quantity[dout, "meters"], "AstronomicalUnit"]], 
+     "Possibly Habitable \[HappySmiley]", 
+     "Not Possibly Habitable \[SadSmiley]"]}, {i, 1, 
+    Length[yearlist]}];
+TraditionalForm@Style[prob4body, 20]
+TraditionalForm@
+ Style[TableForm@
+   PrependTo[
+    resulttable, {"Name of Planet", "Orbital Distance in Meters", 
+     "Orbital Distance in AU", " Habitable?"}], 15]
+
