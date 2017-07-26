@@ -1,0 +1,36 @@
+(*Created in Mathematica 10.1, Raw Code From Mathematica File Pendulum.nb; this is for Copy-Paste, not opening in Mathematica*)
+(*for a sphere, c ~.64*)
+l = 40;
+densityOfSand = 1600;
+radiusOfCylinder = 1;
+heightOfSand = .5;
+radiusOfOraface = .1;
+areaOfOraface = \[Pi]*(radiusOfOraface)^2;
+c = .58;
+g = 9.8;
+initalMass = \[Pi]*(radiusOfBall^2)*heightOfSand*densityOfSand;
+massFlow = -c*densityOfSand*Sqrt[g]*(areaOfOraface - 1.5*.0000625)^(
+   5/2);
+r = {l*Sin[\[Theta][t]]*Cos[\[Phi][t]], 
+   l*Sin[\[Theta][t]]*Sin[\[Phi][t]], -l*Cos[\[Theta][t]]};
+v = FullSimplify[TrigReduce[D[r, t]]];
+v2 = FullSimplify[TrigReduce[v.v]];
+U = (initalMass + massFlow*t)*g*r[[3]];
+T = .5*(initalMass + massFlow*t)*v2;
+L = T - U;
+theq = TrigReduce[
+   D[D[L, Derivative[1][\[Theta]][t]], t] - D[L, \[Theta][t]]];
+phiq = TrigReduce[
+   D[D[L, Derivative[1][\[Phi]][t]], t] - D[L, \[Phi][t]]];
+tmax = 1000;
+initalMass/-massFlow
+If[initalMass/-massFlow > tmax,
+ sol1 = NDSolve[{theq == 0, phiq == 0, 
+    Derivative[1][\[Theta]][0] == 0, 
+    Derivative[1][\[Phi]][0] == 
+     Sqrt[g/l*ArcCos[\[Theta][0]]]*.1, \[Theta][0] == \[Pi]/
+      16, \[Phi][0] == \[Pi]/16}, {\[Theta], \[Phi]}, {t, 0, tmax}];
+ sol\[Theta][t_] := \[Theta][t] /. sol1[[1]][[1]];
+ x[t_] := l*Sin[sol\[Theta][t]]*Cos[sol\[Phi][t]];
+ y[t_] := l*Sin[sol\[Theta][t]]*Sin[sol\[Phi][t]];
+ ParametricPlot[{x[t], y[t]}, {t, .1, tmax}], Abort[]]
