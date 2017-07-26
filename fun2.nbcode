@@ -1,0 +1,77 @@
+(*Graphing Function,takes in a list of vertexs and edges and displays \
+them from http://mathematica.stackexchange.com/a/8682*)
+PlotDiagram[vertex_List, edge_List, args___] := 
+ Module[{v, vl, vp, e, el, es}, v = Range[Length@vertex];
+  vl = Table[vertex[[i, 1]], {i, 1, Length@vertex}];
+  vp = Table[vertex[[i, 2]], {i, 1, Length@vertex}];
+  e = Table[edge[[i, 1]], {i, 1, Length@edge}];
+  el = Table[edge[[i, 2]], {i, 1, Length@edge}];
+  es = Table[edge[[i, 3]], {i, 1, Length@edge}];
+  Graph[v, e, VertexCoordinates -> vp, 
+   VertexLabels -> 
+    Table[v[[i]] -> Placed[vl[[i]], {0.5, 0.5}], {i, 1, Length[v]}], 
+   EdgeLabels -> Table[e[[i]] -> el[[i]], {i, 1, Length[e]}], 
+   EdgeShapeFunction -> Table[e[[i]] -> es[[i]], {i, 1, Length[e]}], 
+   args, VertexLabelStyle -> Directive[Italic, 18], 
+   EdgeLabelStyle -> Directive[Italic, 15], VertexSize -> 0, 
+   VertexStyle -> Directive[EdgeForm[], White]]]
+
+(*Inital Varibles*)
+n = 35;
+vertex = Table[{"", {RandomReal[{-1, 1}], RandomReal[{-1, 1}]}}, {i, 
+    1, n}];
+initim = AbsoluteTime[];
+(*Inital settings*)
+vertexlimit = n - 1;
+timelimit = 5;
+movementweight = 8/100;
+colorweight = .95;(*If<.7 nothing happens*)
+(*Main Loop*)
+Dynamic[l3]
+initim = AbsoluteTime[];
+While[Abs[AbsoluteTime[] - initim] < timelimit, 
+ vertex = Table[{"", 
+    vertex[[i, 2]] + {RandomReal[{-1, 1}], RandomReal[{-1, 1}]}*
+      movementweight}, {i, 1, n}];
+ edge = Table[{(Mod[i, vertexlimit] + 
+       1) \[DirectedEdge] (Mod[i + 1, vertexlimit] + 1), 
+    Placed["", {.5, {.5, -.2}}], ({Black, Arrowheads[0], 
+       Arrow[#]} &)}, {i, 1, n}];
+ l3 = Colorize[
+   WatershedComponents[
+    FillingTransform[
+     ColorNegate@
+      Image@PlotDiagram[vertex, edge, ImageSize -> Large, 
+        ImagePadding -> 40], 1 - .95]]]]
+Dynamic[l1]
+initim = AbsoluteTime[];
+While[Abs[AbsoluteTime[] - initim] < timelimit, 
+ vertex = Table[{"", 
+    vertex[[i, 2]] + {RandomReal[{-1, 1}], RandomReal[{-1, 1}]}*
+      movementweight}, {i, 1, n}];
+ edge = Table[{(Mod[i, vertexlimit] + 
+       1) \[DirectedEdge] (Mod[i + 1, vertexlimit] + 1), 
+    Placed["", {.5, {.5, -.2}}], ({Black, Arrowheads[0], 
+       Arrow[#]} &)}, {i, 1, n}];
+ l1 = Colorize[
+   WatershedComponents[
+    FillingTransform[
+     ColorNegate@
+      Image@PlotDiagram[vertex, edge, ImageSize -> Large, 
+        ImagePadding -> 40], 1 - .85]]]]
+Dynamic[l2]
+initim = AbsoluteTime[];
+While[Abs[AbsoluteTime[] - initim] < timelimit, 
+ vertex = Table[{"", 
+    vertex[[i, 2]] + {RandomReal[{-1, 1}], RandomReal[{-1, 1}]}*
+      movementweight}, {i, 1, n}];
+ edge = Table[{(Mod[i, vertexlimit] + 
+       1) \[DirectedEdge] (Mod[i + 1, vertexlimit] + 1), 
+    Placed["", {.5, {.5, -.2}}], ({Black, Arrowheads[0], 
+       Arrow[#]} &)}, {i, 1, n}];
+ l2 = Colorize[
+   WatershedComponents[
+    FillingTransform[
+     ColorNegate@
+      Image@PlotDiagram[vertex, edge, ImageSize -> Large, 
+        ImagePadding -> 40], 1 - .75]]]]
