@@ -1,5 +1,6 @@
 # MathematicaFun
 Mathematica One Shots
+
 for every .nb file, there is an .nbcode file which contains the human readable mathematica code
 
 * PIDAY.nb is an mathematica file containing my solutions to https://www.jpl.nasa.gov/edu/teach/activity/pi-in-the-sky-4/
