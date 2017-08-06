@@ -14,4 +14,6 @@ for every .nb file, there is an .nbcode file which contains the human readable m
 
 * emoji.nb an demonstration that mathematica can handle emoji usage in its code
 
+* resturant.nb is a resturant lookup script for resturants in Grand Forks,ND
+
 Every file in this repository is under the Unlicense
