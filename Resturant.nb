@@ -1,0 +1,731 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     44176,        722]
+NotebookOptionsPosition[     43810,        705]
+NotebookOutlinePosition[     44154,        720]
+CellTagsIndexPosition[     44111,        717]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+   "liststring", "=", 
+    "\"\<Toasted Frog\n4.5\n(98)\[CenterDot]$$\[CenterDot]Eclectic Restaurant\
+\nAmerican fare with global influences& martinis amid brick walls,high \
+ceilings& abstract art.124 N 3rd St\n\
+Tourists\[CenterDot]Coffee\[CenterDot]Usually a wait\n\
+\[IndentingNewLine]Rhombus Guys\n4.5\n(149)\[CenterDot]$$\[CenterDot]Pizza\n\
+Gourmet pizza with plenty of veggie options in a funky storefront with a roof \
+deck& lots of taps.312 Kittson Ave\nTourists\[CenterDot]Great cocktails\
+\[CenterDot]Great beer selection\n\[IndentingNewLine]Green Mill Restaurant& \
+Bar\n3.4\n(67)\[CenterDot]Restaurant\nFamily-friendly chain bar& grill \
+serving American fare,plus deep-dish pizzas.1930 S Columbia Rd\nCoffee\
+\[CenterDot]Great cocktails\[CenterDot]Great beer selection\n\
+\[IndentingNewLine]Paradiso Mexican Restaurant Grand Forks\n3.5\n(90)\
+\[CenterDot]$$\[CenterDot]Restaurant\nLocal chain serving Mexican \
+faves,including flame-grilled fare,in a casual,traditional space.905 S \
+Washington St\nTourists\[CenterDot]Coffee\[CenterDot]Great cocktails\n\
+\[IndentingNewLine]Giuseppe's Italian Ristorante\n4.5\n(28)\[CenterDot]$$\
+\[CenterDot]Italian\nTraditional pasta dishes& Italian entrees are served in \
+a simple space with booths& greenery.414 Demers Ave\nCoffee\[CenterDot]Great \
+cocktails\[CenterDot]Great wine list\n\[IndentingNewLine]Brick& Barley Bar \
+and Restaurant\n4.2\n(51)\[CenterDot]Grill\nCraft beer& eclectic pub fare \
+served in an industrial-chic space with live bands& sidewalk seats.9 N 3rd St\
+\nFood\[CenterDot]Live music\[CenterDot]Bar games\n\
+\[IndentingNewLine]Speedway 805 Grill& Bar\n4.2\n(80)\[CenterDot]$$\
+\[CenterDot]American\nLong-standing family-owned eatery serving casual \
+American fare& cocktails in an easygoing setting.805 N 42nd St\nTourists\
+\[CenterDot]Coffee\[CenterDot]Quick bite\n\[IndentingNewLine]Italian Moon \
+Pizza& Mexican Food\n3.8\n(51)\[CenterDot]Restaurant\nLongtime \
+family-friendly spot with a large menu of Italian,American& Mexican eats& \
+daily buffet.810 S Washington St\nCoffee\[CenterDot]Quick bite\[CenterDot]All \
+you can eat\n\[IndentingNewLine]shing ya Japanese cuisine\n4.5\n(31)\
+\[CenterDot]Japanese\nDown-to-earth Japanese bistro serving traditional \
+dishes& sushi rolls,plus sake& imported beer.108 N 3rd St\nGreat tea \
+selection\[CenterDot]Small plates\[CenterDot]Quiet\n\[IndentingNewLine]Ground \
+Round Grill& Bar\n3.9\n(75)\[CenterDot]$$\[CenterDot]Grill\nFamily-friendly \
+chain eatery with a broad American menu,a variety of cocktails& a relaxed \
+setting.2800 32nd Ave S\nFood\[CenterDot]Tourists\[CenterDot]Coffee\n\
+\[IndentingNewLine]Olive Garden\n3.8\n(73)\[CenterDot]$$\[CenterDot]Italian\n\
+Lively,family-friendly chain featuring Italian standards such as pastas& \
+salads,with a full bar.3160 32nd Ave S\n\
+Tourists\[CenterDot]Coffee\[CenterDot]Great cocktails\n\
+\[IndentingNewLine]Fuji Japanese Seafood and Steakhouse\n4.2\n\
+(45)\[CenterDot]Seafood\nJapanese restaurant serving sushi,noodles& hibachi \
+fare in a dimly lighted,contemporary space.715 S Washington St\nGreat \
+cocktails\[CenterDot]Small plates\[CenterDot]Casual\n\
+\[IndentingNewLine]Applebee's\n3.9\n(61)\[CenterDot]$$\[CenterDot]Grill\n\
+Full-service chain bar& grill providing hearty American eats in an informal \
+setting.2851 S Columbia Rd\nFood\[CenterDot]Tourists\[CenterDot]Coffee\n\
+\[IndentingNewLine]China Garden Restaurant\n3.6\n(65)\[CenterDot]$$\
+\[CenterDot]Restaurant\nChinese eatery offering a traditional range of stir \
+fries with some American options& lunch deals.2550 32nd Ave S\nGreat tea \
+selection\[CenterDot]Quiet\[CenterDot]Casual\n\[IndentingNewLine]JL Beers\n\
+4.5\n(80)\[CenterDot]Bar\nRelaxed hangout featuring burgers with creative \
+topping combos& an assortment of craft beers.2531 S Columbia Rd\nFood\
+\[CenterDot]Tourists\[CenterDot]Great beer selection\n\
+\[IndentingNewLine]L'Bistro\n3.7\n(20)\[CenterDot]$$\[CenterDot]Pizza\n\
+Stylish spot offering pizza,pasta& Mediterranean small plates,plus \
+wine,cocktails& jazz nights.Canad Inns Destination Center-Grand Forks,1000 S \
+42nd St\nCoffee\[CenterDot]Great cocktails\[CenterDot]Great wine list\n\
+\[IndentingNewLine]Gramma Butterwick's Restaurant\n4.4\n\
+(24)\[CenterDot]Breakfast Restaurant\n1421 S Washington St\n\
+Coffee\[CenterDot]Quick bite\[CenterDot]Great dessert\nClosed now\n\
+\[IndentingNewLine]Sky's Restaurant\n4.4\n(29)\[CenterDot]Fine Dining \
+Restaurant\nStylish,modern eatery& cocktail lounge serving steaks,seafood& \
+other American fare for dinner.322 Demers Ave\nCoffee\[CenterDot]Great \
+cocktails\[CenterDot]Great wine list\n\[IndentingNewLine]Red Pepper\n4.4\n\
+(118)\[CenterDot]$$\[CenterDot]Restaurant\nLocal chain of laid-back taquerias \
+serving taco-meat grinders,casual Mexican eats& hot dogs.1011 University Ave\n\
+Tourists\[CenterDot]Quick bite\[CenterDot]College students\n\
+\[IndentingNewLine]1000 Degrees Neapolitan Pizzeria\n4.3\n\
+(24)\[CenterDot]Pizza\n951 S 42nd St\nQuick bite\[CenterDot]College students\
+\[CenterDot]Casual\nMexican Village\n3.6 \n (42) \[CenterDot] Restaurant\n\
+1218 S Washington St\nQuick bite \[CenterDot] Cozy \[CenterDot] Casual\n\n\
+Texas Roadhouse\n4.4 \n (130) \[CenterDot] $$ \[CenterDot] Steak\nLively \
+chain steakhouse serving American fare with a Southwestern spin amid \
+Texas-themed decor.\n3200 32nd Ave S\nTourists \[CenterDot] Usually a wait \
+\[CenterDot] Great cocktails\n\nPerkins Restaurant & Bakery\n3.8 \n (40) \
+\[CenterDot] $$ \[CenterDot] Restaurant\nKid-friendly chain known for baked \
+goods, breakfasts & other American standards in dinerlike digs.\n1305 S \
+Columbia Rd\nCoffee \[CenterDot] Vegetarian options \[CenterDot] Takeout\n\n\
+Pizza Ranch\n4.3 \n (75) \[CenterDot] Buffet Restaurant\nBuffet chain \
+offering pizza, fried chicken & classic American sides in an Old West-themed \
+setting.\n3750 32nd Ave S #100\n\nDeek's Pizza\n3.9 \n (56) \[CenterDot] $$ \
+\[CenterDot] Restaurant\nTakeout & delivery pizzeria open late & popular with \
+UND students, serving standout breadsticks.\n512 N Washington St\nTourists \
+\[CenterDot] Quick bite \[CenterDot] College students\n\nPopolino's Pizza\n\
+4.1 \n (27) \[CenterDot] $$ \[CenterDot] Pizza\nStrip-mall operation with \
+late hours offering create-your-own pizza from a variety of options.\n2600 \
+Demers Ave #108\nCollege students \[CenterDot] Casual \[CenterDot] Locals\n\n\
+Ruby Tuesday\n4.3 \n (66) \[CenterDot] $$ \[CenterDot] American\nCasual chain \
+with American fare, featuring burgers, a salad bar, cocktails & a convivial \
+vibe.\n3915 32nd Ave S\nTourists \[CenterDot] Coffee \[CenterDot] Great \
+cocktails\n\nSakura Japanese Steakhouse\n4.4 \n (51) \[CenterDot] Japanese \
+Steakhouse\n3250 32nd Ave S\nTourists \[CenterDot] Great cocktails \
+\[CenterDot] Great tea selection\n\nMuddy Rivers Bar & Grill\n4.3 \n (9) \
+\[CenterDot] Grill\nMellow watering hole at Red Roof Inn offering classic \
+American eats & a full bar, plus casino games.\nRed Roof Inn TownHouse - \
+Grand Forks, 710 1st Ave N\nFood \[CenterDot] Tourists \[CenterDot] Coffee\n\n\
+Red Lobster\n4.3 \n (52) \[CenterDot] $$ \[CenterDot] Seafood\nLively chain \
+restaurant serving American seafood standards amid New England-themed decor.\n\
+2675 32nd Ave S\nTourists \[CenterDot] Coffee \[CenterDot] Great cocktails\n\n\
+Buffalo Wild Wings\n4.1 \n (98) \[CenterDot] $ \[CenterDot] Chicken Wings\n\
+Lively sports-bar chain dishing up wings & other American pub grub amid lots \
+of large-screen TVs.\n2717 S Columbia Rd\nTourists \[CenterDot] Quick bite \
+\[CenterDot] Great cocktails\n\nParrot's Cay Tavern & Grill\n4.7 \n (104) \
+\[CenterDot] $$ \[CenterDot] Grill\nBuzzy Cajun-style grill with a collegial \
+vibe offering lots of beers & spiced-to-order wings.\n1149 36th Ave S\nFood \
+\[CenterDot] Tourists \[CenterDot] Usually a wait\n\nHuHot Mongolian Grill\n\
+4.3 \n (82) \[CenterDot] Restaurant\nChain offering all-you-can-eat, \
+customizable stir-fry dishes in an informal setting.\n2712 S Columbia Rd #400\
+\nAll you can eat \[CenterDot] Vegetarian options\n\nGrand Junction Grilled \
+Subs\n3.8 \n (32) \[CenterDot] Restaurant\n558-, 686 S 42nd St\nQuick bite \
+\[CenterDot] College students \[CenterDot] Casual\n\nBlue Moose Bar & Grill\n\
+4.4 \n (162) \[CenterDot] $$ \[CenterDot] Grill\nLodge-like locale with a \
+menu ranging from tapas to burgers, seafood to BBQ ribs, plus beer on tap.\n\
+507 2nd St NW\nFood \[CenterDot] Tourists \[CenterDot] Coffee\n\nFive Guys\n\
+4.4 \n (56) \[CenterDot] $ \[CenterDot] Fast Food\nFast-food chain with \
+made-to-order burgers, fries & hot dogs, plus free peanuts while you wait.\n\
+3321 32nd Ave S\nQuick bite \[CenterDot] Casual \[CenterDot] Takeout\n\nKon \
+Nechi Wa's\n3.6 \n (26) \[CenterDot] $$ \[CenterDot] Restaurant\n3750 32nd \
+Ave S #107\nQuiet \[CenterDot] Casual \[CenterDot] Locals\n\nSickies Garage \
+Burgers & Brews\n4.4 \n (60) \[CenterDot] Hamburger\n1419 S Columbia Rd\n\
+Tourists \[CenterDot] Quick bite \[CenterDot] Happy hour drinks\n\nWild Hog\n\
+3.7 \n (55) \[CenterDot] $$ \[CenterDot] Restaurant\n4401 44th Ave S\n\
+Tourists \[CenterDot] Happy hour drinks \[CenterDot] Great cocktails\n\nIHOP\n\
+3.2 \n (80) \[CenterDot] $ \[CenterDot] Restaurant\nLong-standing chain \
+serving a wide variety of pancakes & other American breakfast & diner fare.\n\
+3951 32nd Ave S\nTourists \[CenterDot] Coffee \[CenterDot] College students\n\
+Tim Hortons\n3.3 \n (47) \[CenterDot] $ \[CenterDot] Coffee Store\nCanadian \
+chain selling signature premium-blend coffee, plus light fare like pastries, \
+panini & soup.\n801 S 42nd St\n\nPanda Buffet\n4.0 \n (97) \[CenterDot] $$ \
+\[CenterDot] Restaurant\nChill Chinese outfit supplying all-you-can-eat \
+Mongolian BBQ along with other international options.\n2451 S Columbia Rd\n\
+Quick bite \[CenterDot] All you can eat \[CenterDot] College students\n\n\
+Spicy Pie Grand Forks\n3.8 \n (31) \[CenterDot] $ \[CenterDot] Pizza\n3000 \
+32nd Ave S\nQuick bite \[CenterDot] College students \[CenterDot] Casual\n\n\
+Eagles Crest Grill\n3.5 \n (18) \[CenterDot] Restaurant\n5301 S Columbia Rd\n\
+Coffee \[CenterDot] Great cocktails \[CenterDot] Great dessert\n\nSlapShot \
+Pizza & Fat Alberts Subs\n4.0 \n (23) \[CenterDot] Pizza\n2215 Gateway Dr # A\
+\nQuick bite \[CenterDot] College students \[CenterDot] Casual\n\nFar East \
+Buffet\n3.8 \n (41) \[CenterDot] $$ \[CenterDot] Restaurant\nLow-key place \
+with an all-you-can-eat buffet of varied Asian fare, including stir fries & \
+sushi.\n3555 Gateway Dr\nQuick bite \[CenterDot] All you can eat \[CenterDot] \
+Casual\n\nMamma Maria's\n3.7 \n (52) \[CenterDot] $$ \[CenterDot] Restaurant\n\
+Informal Italian bar & eatery with hand-tossed or thick-crust brick-oven \
+pies, plus pasta & entrees.\nRiverwalk Centre, 211 Demers Ave\nCoffee \
+\[CenterDot] Great wine list \[CenterDot] Great dessert\n\nRhombus Guys \
+Brewing Company\n4.8 \n (44) \[CenterDot] Restaurant\n116 S 3rd St\nTourists \
+\[CenterDot] Great beer selection \[CenterDot] College students\n\nWashington \
+Cafe\n3.0 \n (2) \[CenterDot] Restaurant\n2017 S Washington St\nCasual \
+\[CenterDot] Locals \[CenterDot] Takeout\n\nScotty's Deli & Catering\n4.7 \n \
+(19) \[CenterDot] Restaurant\n1113 S Washington St\nCoffee \[CenterDot] Quick \
+bite \[CenterDot] Casual\n\nQDOBA Mexican Eats\n4.0 \n (60) \[CenterDot] $ \
+\[CenterDot] Mexican\nMexican chain for counter-serve, custom burritos, tacos \
+& more, including health-oriented options.\n3551 32nd Ave S, Suite E7\n\n\
+STEERS SOMALI RESTAURANT\n4.8 \n (32) \[CenterDot] African Restaurant\n2915 S \
+Washington St\nGreat tea selection \[CenterDot] Cozy \[CenterDot] Casual\n\n\
+Shotgun Sally's Rock and Roll Saloon\n3.9 \n (22) \[CenterDot] $$ \
+\[CenterDot] Grill\n2015 Library Cir\nFood \[CenterDot] Live music \
+\[CenterDot] Bar games\n\nPanera Bread\n4.2 \n (42) \[CenterDot] $ \
+\[CenterDot] Sandwich\nCounter-serve bakery/cafe chain serving sandwiches, \
+salads & more, known for its bread & free WiFi.\n2515 32nd Ave S\nCoffee \
+\[CenterDot] Vegetarian options \[CenterDot] Takeout\n\nDogMahal DogHaus\n4.4 \
+\n (12) \[CenterDot] Hot Dog\n305 N Washington St\nQuick bite \[CenterDot] \
+Casual \[CenterDot] Locals\nClosing soon: 7:00 PM\n\nPita Pit\n4.6 \n (12) \
+\[CenterDot] Mediterranean\n3221 32nd Ave S #300\nQuick bite \[CenterDot] \
+Casual \[CenterDot] Locals\n\nBonzer's\n4.2 \n (75) \[CenterDot] $$ \
+\[CenterDot] Sandwich\nOld-school, over-21 hangout providing a variety of \
+sandwiches, cocktails & big schooners of beer.\n420 Demers Ave\nQuick bite \
+\[CenterDot] Great cocktails \[CenterDot] Great beer selection\n\nTavern \
+United Grand Forks\n2.7 \n (46) \[CenterDot] Sports Bar\nPub fare, pints & \
+cocktails in a comfortable sports-bar setting with pool tables & plenty of \
+TVs.\n1000 S 42nd St\nFood \[CenterDot] Tourists \[CenterDot] Great cocktails\
+\n\nTaco Bell\n1.9 \n (153) \[CenterDot] $ \[CenterDot] Mexican\nFast-food \
+chain serving Mexican-inspired fare such as tacos, quesadillas & nachos.\n\
+1301 S Washington St\nQuick bite \[CenterDot] Usually a wait \[CenterDot] \
+College students\n\nCaribou Coffee\n4.1 \n (28) \[CenterDot] $ \[CenterDot] \
+Coffee Shop\nEco-conscious coffee chain offering java drinks, smoothies & \
+teas alongside light fare & pastries.\n2400 S Washington St\nPrepared foods \
+\[CenterDot] Tourists \[CenterDot] Coffee\nJoe Black's Bar & Grill\n4.0 \n \
+(49) \[CenterDot] Grill\nClassic American bar drawing a boisterous college \
+crowd with booze, pub grub & sports on TV.\n118 N 3rd St\nFood \[CenterDot] \
+Tourists \[CenterDot] Quick bite\n\nWild Bill's Sports Saloon - Grand Forks\n\
+4.4 \n (54) \[CenterDot] Sports Bar\n1405 Demers Ave\nFood \[CenterDot] Great \
+cocktails \[CenterDot] Great beer selection\n\nNoodles and Company\n4.3 \n \
+(41) \[CenterDot] $$ \[CenterDot] Restaurant\nCounter-serve chain offering \
+international noodle & pasta dishes from mac 'n' cheese to pad Thai.\n3000 \
+32nd Ave S\n\nDQ Grill & Chill Restaurant\n4.1 \n (16) \[CenterDot] $ \
+\[CenterDot] Fast Food\nSoft-serve ice cream & signature shakes top the menu \
+at this classic burger & fries fast-food chain.\n3600 S Columbia Rd\nCoffee \
+\[CenterDot] Quick bite \[CenterDot] Drive-through\n\nRed Pepper at Campus \
+Place\n4.1 \n (49) \[CenterDot] Mexican\nLocal chain of laid-back taquerias \
+serving taco-meat grinders, casual Mexican eats & hot dogs.\n415 N 42nd St \
+Ste A\nTourists \[CenterDot] Quick bite \[CenterDot] College students\n\n\
+Wendy's\n3.7 \n (29) \[CenterDot] $ \[CenterDot] Fast Food\nFast-food burger \
+chain known for its shakes, as well as sides such as chili & baked potatoes.\n\
+1503 S Washington St\nCoffee \[CenterDot] Quick bite \[CenterDot] \
+Drive-through\n\nBurger Time\n4.3 \n (37) \[CenterDot] Fast Food\nNo-nonsense \
+take-out counter & drive-thru window serving old-fashioned hamburgers, fries \
+& shakes.\n2651 Demers Ave\nQuick bite \[CenterDot] Drive-through \
+\[CenterDot] Casual\n\nLittle Bangkok\n4.0 \n (63) \[CenterDot] $$ \
+\[CenterDot] Thai\nLow-key restaurant serving sushi as well as Thai, \
+Japanese, Chinese & Vietnamese dishes.\n415 2nd St NW\nCollege students \
+\[CenterDot] Great tea selection \[CenterDot] Quiet\n\nHistoric Kegs Drive-In\
+\n2.9 \n (7) \[CenterDot] Restaurant\n901 N 5th St\nQuick bite \[CenterDot] \
+Historic \[CenterDot] Casual\n\nKFC\n2.9 \n (30) \[CenterDot] $ \[CenterDot] \
+Fast Food\nFast-food chain known for its buckets of fried chicken, plus wings \
+& sides.\n706 S Washington St\nQuick bite \[CenterDot] Casual \[CenterDot] \
+Good for kids\n\nBurger King\n2.8 \n (26) \[CenterDot] $ \[CenterDot] Fast \
+Food\nWell-known fast-food chain serving grilled burgers, fries & shakes, \
+plus breakfast.\n3765 Gateway Dr\nCoffee \[CenterDot] Quick bite \[CenterDot] \
+Drive-through\n\nDel's Coffee Shop\n4.3 \n (3) \[CenterDot] Restaurant\nGrand \
+Cities Mall, 1828 S Washington St\nCoffee \[CenterDot] Quick bite \
+\[CenterDot] Great tea selection\n\nWhitey's\n3.8 \n (12) \[CenterDot] \
+Restaurant\n121 Demers Ave\nCoffee \[CenterDot] Great cocktails \[CenterDot] \
+Great beer selection\n\nGarbonzo's Pizza & Arcade\n4.0 \n (3) \[CenterDot] \
+Pizza\n1000 S 42nd St\nCasual \[CenterDot] Locals \[CenterDot] Vegetarian \
+options\n\nErbert & Gerbert's\n3.2 \n (23) \[CenterDot] Sandwich\nChain \
+eatery offering submarine sandwiches, soups & chili in a casual, \
+counter-service setting.\n3000 32nd Ave S\nQuick bite \[CenterDot] College \
+students \[CenterDot] Casual\n\nDenny's\n3.1 \n (32) \[CenterDot] $ \
+\[CenterDot] Diner\nCasual diner chain dishing up classic American comfort \
+fare, including all-day breakfast favorites.\n3770 32nd Ave S\nCoffee \
+\[CenterDot] Vegetarian options \[CenterDot] Takeout\n\nPapa John's Pizza\n\
+4.4 \n (14) \[CenterDot] $$ \[CenterDot] Pizza Delivery\nTake-out/delivery \
+chain offering classic & specialty pizzas, wings & breadsticks, plus \
+desserts.\n1515 S Washington St\n\nWendy's\n3.3 \n (26) \[CenterDot] $ \
+\[CenterDot] Fast Food\nFast-food burger chain known for its shakes, as well \
+as sides such as chili & baked potatoes.\n3760 32nd Ave S\nCoffee \
+\[CenterDot] Quick bite \[CenterDot] Drive-through\n\nSouthgate Casino Bar & \
+Grill\n3.8 \n (25) \[CenterDot] Grill\nOld-school late-night casino offers \
+table games, bingo & pull tabs, plus cocktails & American fare.\n2525 S \
+Washington St\nFood \[CenterDot] Coffee \[CenterDot] Bar games\n\nPizza Hut\n\
+2.9 \n (20) \[CenterDot] $ \[CenterDot] Pizza\nFamily-friendly chain known \
+for its made-to-order pizzas.\n2751 32nd Ave S\nCasual \[CenterDot] Locals \
+\[CenterDot] Delivery\nTao Garden\n3.8 \n (39) \[CenterDot] Restaurant\n302 \
+Demers Ave\nQuiet \[CenterDot] Casual \[CenterDot] Locals\n\nPizza Hut\n3.0 \n\
+ (14) \[CenterDot] $ \[CenterDot] Pizza\nFamily-friendly chain known for its \
+made-to-order pizzas.\n1418 S Washington St\nCasual \[CenterDot] Locals \
+\[CenterDot] Delivery\n\nSubway\n2.5 \n (13) \[CenterDot] $ \[CenterDot] \
+Restaurant\nCasual counter-serve chain for build-your-own sandwiches & \
+salads.\n1850 S Columbia Rd\nTourists \[CenterDot] Quick bite \[CenterDot] \
+Casual\n\nBoardwalk Bar & Grill\n4.0 \n (27) \[CenterDot] $$ \[CenterDot] \
+Grill\n415 2nd St NW\nFood \[CenterDot] Coffee \[CenterDot] Quick bite\n\n\
+Culver's\n4.1 \n (69) \[CenterDot] $ \[CenterDot] American\nFast-food chain \
+specializing in frozen custard & signature burgers made with Midwest beef & \
+dairy.\n3451 32nd Ave S\nTourists \[CenterDot] Coffee \[CenterDot] Quick bite\
+\n\nFlying J\n3.2 \n (29) \[CenterDot] Convenience Store\n4401 32nd Ave S\n\n\
+Azur\n2.5 \n (2) \[CenterDot] Bar\n1210 N 43rd St\nFood \[CenterDot] Great \
+cocktails \[CenterDot] Casual\n\nDomino's Pizza\n3.6 \n (24) \[CenterDot] $ \
+\[CenterDot] Pizza Delivery\nDelivery/carryout chain offering a wide range of \
+pizza, plus chicken & other sides.\n2705 S Washington St\n\nLittle Caesars \
+Pizza\n3.2 \n (16) \[CenterDot] $ \[CenterDot] Pizza\nCarry-out chain \
+featuring chicken wings, signature breadsticks & pizza tossed from housemade \
+dough.\n2400 S Washington St\nQuick bite \[CenterDot] College students \
+\[CenterDot] Casual\n\nGrand Forks Inn & Suites\n2.4 \n (65) \[CenterDot] \
+Hotel\nPlain hotel with basic rooms, free breakfast & a 24-hour snack \
+station, plus an indoor water park.\n1210 N 43rd St\nHot tub \[CenterDot] \
+Quiet \[CenterDot] Casual\n\nPhoenix Wok & Grill\n3.2 \n (14) \[CenterDot] $$ \
+\[CenterDot] Chinese\n2100 S Columbia Rd # 1\nCasual \[CenterDot] Locals \
+\[CenterDot] Vegetarian options\n\nBurger King\n3.2 \n (27) \[CenterDot] $ \
+\[CenterDot] Fast Food\nWell-known fast-food chain serving grilled burgers, \
+fries & shakes, plus breakfast.\n3151 32nd Ave S\nCoffee \[CenterDot] Quick \
+bite \[CenterDot] Drive-through\n\nO For Heaven's Cakes N' More\n4.7 \n (6) \
+\[CenterDot] Bakery\nGrand Cities Mall, 1726 S Washington St\nClosed now\n\n\
+Burger King\n3.5 \n (22) \[CenterDot] $ \[CenterDot] Fast Food\nWell-known \
+fast-food chain serving grilled burgers, fries & shakes, plus breakfast.\n\
+1416 S Washington St\nCoffee \[CenterDot] Quick bite \[CenterDot] \
+Drive-through\n\nPapa Murphy's Take 'N' Bake Pizza\n3.9 \n (11) \[CenterDot] \
+$ \[CenterDot] Pizza\nChain outlet offering build-your-own takeaway pizzas, \
+to be cooked at home.\n2475 32nd Ave S\nCasual \[CenterDot] Locals \
+\[CenterDot] Healthy options\n\nDQ / Orange Julius\n2.8 \n (6) \[CenterDot] $ \
+\[CenterDot] Fast Food\nSoft-serve ice cream & signature shakes top the menu \
+at this classic burger & fries fast-food chain.\n1205 S Washington St\nQuick \
+bite \[CenterDot] Drive-through \[CenterDot] Casual\n\nTaco John's\n3.6 \n \
+(16) \[CenterDot] $ \[CenterDot] Restaurant\nFast-food chain featuring tacos, \
+burritos, nachos & breakfasts mixing Mexican & Western flavors.\n2522 Gateway \
+Dr\nCoffee \[CenterDot] Vegetarian options \[CenterDot] Takeout\n\nThe Ember\n\
+4.8 \n (22) \[CenterDot] Coffee Shop\n8 N 3rd St\nPrepared foods \[CenterDot] \
+Coffee \[CenterDot] Live music\n\nMike's Pizza & Pub\n4.3 \n (26) \
+\[CenterDot] $$ \[CenterDot] Italian\nFamily-owned since 1964, this simple \
+pizzeria with a full bar has burgers, ribs, pasta & other eats.\n411 2nd St \
+NW\nQuick bite \[CenterDot] College students \[CenterDot] Casual\n\nMarco's \
+Pizza\n4.2 \n (19) \[CenterDot] $$ \[CenterDot] Pizza\nCounter-serve chain \
+for specialty or custom pizzas in a simple, family-friendly setting.\n3901 S \
+Washington St\nCasual \[CenterDot] Locals \[CenterDot] Delivery\n\nLittle \
+Caesars Pizza\n3.2 \n (20) \[CenterDot] $ \[CenterDot] Pizza\nCarry-out chain \
+featuring chicken wings, signature breadsticks & pizza tossed from housemade \
+dough.\n1801 Gateway Dr\nQuick bite \[CenterDot] College students \
+\[CenterDot] Casual\n\nTaco John's\n3.2 \n (18) \[CenterDot] $ \[CenterDot] \
+Restaurant\nFast-food chain featuring tacos, burritos, nachos & breakfasts \
+mixing Mexican & Western flavors.\n1111 S Washington St\nCoffee \[CenterDot] \
+Vegetarian options \[CenterDot] Takeout\n\nArby's\n3.8 \n (17) \[CenterDot] $ \
+\[CenterDot] Fast Food\nFast-food chain, known for its roast beef, serving up \
+hot & cold sandwiches, fries & shakes.\n3851 32nd Ave S\n\nPapa Murphy's Take \
+'N' Bake Pizza\n4.3 \n (14) \[CenterDot] $ \[CenterDot] Pizza\nChain outlet \
+offering build-your-own takeaway pizzas, to be cooked at home.\n2750 Gateway \
+Dr h\nCasual \[CenterDot] Locals \[CenterDot] Healthy options\n\nMagic Chop \
+Stix\n4.2 \n (4) \[CenterDot] Restaurant\nColumbia Mall, 2800 S Columbia Rd\n\
+Casual \[CenterDot] Locals \[CenterDot] Vegetarian options\n\nSubway\n2.7 \n \
+(3) \[CenterDot] $ \[CenterDot] Restaurant\nCasual counter-serve chain for \
+build-your-own sandwiches & salads.\nColumbia Mall, 2800 S Columbia Rd\n\
+Tourists \[CenterDot] Quick bite \[CenterDot] Casual\n\nCasa Mexico \
+Restaurant\n4.4 \n (81) \[CenterDot] Restaurant\n112 14th St NE\nGreat \
+dessert \[CenterDot] Cozy \[CenterDot] Casual\n\nTaco John's\n3.8 \n (21) \
+\[CenterDot] $ \[CenterDot] Restaurant\nFast-food chain featuring tacos, \
+burritos, nachos & breakfasts mixing Mexican & Western flavors.\n2651 24th \
+Ave S\nCoffee \[CenterDot] Vegetarian options \[CenterDot] Takeout\n\nJimmy \
+John's\n3.8 \n (32) \[CenterDot] $ \[CenterDot] Sandwich\nCounter-serve chain \
+specializing in sub & club sandwiches, plus signature potato chips.\n#700, \
+3551 32nd Ave S\nTourists \[CenterDot] Quick bite \[CenterDot] College \
+students\n\nHardee's\n3.0 \n (29) \[CenterDot] $ \[CenterDot] Fast Food\n\
+Fast-food chain serving fried chicken, big burgers & made-from-scratch \
+breakfast biscuits.\n1750 S Columbia Rd\nCoffee \[CenterDot] Quick bite \
+\[CenterDot] Drive-through\n\nRumors Sports Bar, Grill & Casino\n3.5 \n (4) \
+\[CenterDot] Grill\n1826 S Washington St\nFood \[CenterDot] Quick bite \
+\[CenterDot] Bar games\n\nHappy Joe's Pizza & Ice Cream - Grand Forks\n4.0 \n \
+(30) \[CenterDot] Pizza\nKid-friendly pizza chain known for crust choices & \
+Mexican-inspired pies plus oversized sundaes.\n2909 S Washington St\nQuick \
+bite \[CenterDot] Casual \[CenterDot] Locals\n\nJimmy John's\n3.5 \n (35) \
+\[CenterDot] $ \[CenterDot] Sandwich\nCounter-serve chain specializing in sub \
+& club sandwiches, plus signature potato chips.\n2855 10th Ave N #400\nQuick \
+bite \[CenterDot] College students \[CenterDot] Casual\n\nAALTOS Garden Cafe\n\
+4.0 \n (2) \[CenterDot] Cafe\nCanad Inns Destination Center - Grand Forks, \
+1000 S 42nd St\nTourists \[CenterDot] Coffee \[CenterDot] Great dessert\n\n\
+Cold Stone Creamery\n4.0 \n (6) \[CenterDot] $ \[CenterDot] Ice Cream Shop\n\
+Ice cream chain offering design-your-own creations hand-mixed on a granite \
+slab, plus shakes & more.\n3551 32nd Ave S #600\nGreat dessert \[CenterDot] \
+Quick visit\n\nDarcy's Cafe\n4.7 \n (62) \[CenterDot] Cafe\nClassic American \
+comfort food from pancakes to pot roast served in an unpretentious diner.\n\
+1015 N Washington St\nTourists \[CenterDot] Coffee \[CenterDot] Quick bite\n\
+Closed now\n\nHardee's\n3.9 \n (18) \[CenterDot] $ \[CenterDot] Restaurant\n\
+Fast-food chain serving fried chicken, big burgers & made-from-scratch \
+breakfast biscuits.\n1213 N 47th St\nTourists \[CenterDot] Coffee \
+\[CenterDot] Quick bite\n\nO'Really's Irish Pub\n4.1 \n (26) \[CenterDot] $$ \
+\[CenterDot] Irish Pub\n10 N 3rd St\nBar games \[CenterDot] Great cocktails \
+\[CenterDot] Great beer selection\n\nValley Dairy Restaurant\n4.3 \n (7) \
+\[CenterDot] Restaurant\n2401 S Columbia Rd\nCoffee \[CenterDot] Casual \
+\[CenterDot] Locals\n\nValley Dairy Restaurant\n4.1 \n (13) \[CenterDot] \
+Restaurant\n1125 S 42nd St\nCoffee \[CenterDot] Casual \[CenterDot] Locals\n\n\
+Caribou Coffee & Einstein Bros. Bagels\n4.4 \n (26) \[CenterDot] Coffee Shop\n\
+Counter-service chain offering egg sandwiches, soups, salads, baked goods & a \
+variety of bagels.\n1225 S Columbia Rd\nPrepared foods \[CenterDot] Tourists \
+\[CenterDot] Coffee\n\nAmazing Grains\n4.8 \n (37) \[CenterDot] Grocery Store\
+\n214 Demers Ave\nPrepared foods \[CenterDot] Great produce \[CenterDot] \
+Organic products\n\nDoc's Grill LLC\nNo reviews \[CenterDot] Restaurant\n1730 \
+13th Ave N #2\nCasual \[CenterDot] Locals \[CenterDot] Takeout\n\nLuigi's \
+Pizza\n4.5 \n (4) \[CenterDot] $$ \[CenterDot] Pizza\n122 4th St NE\nCoffee \
+\[CenterDot] Quick bite \[CenterDot] Casual\n\nFirehouse Subs\n4.3 \n (19) \
+\[CenterDot] $ \[CenterDot] Sandwich\nCounter-serve sandwich chain offering \
+made-to-order hot & cold subs, plus a variety of hot sauces.\n2650 32nd Ave. \
+S., Ste F-1\nNFC mobile payments \[CenterDot] Quick bite \[CenterDot] College \
+students\n\nSeasons Family Restaurant\n5.0 \n (2) \[CenterDot] Family \
+Restaurant\n300 3rd Ave NE\nCasual \[CenterDot] Locals \[CenterDot] Takeout\n\
+Closing soon: 7:00 PM\n\nRed Pepper East\n3.1 \n (9) \[CenterDot] Latin \
+American Restaurant\n1504 Central Ave NW\nQuick bite \[CenterDot] Casual \
+\[CenterDot] Locals\n\nBurger King\n2.9 \n (17) \[CenterDot] $ \[CenterDot] \
+Fast Food\nWell-known fast-food chain serving grilled burgers, fries & \
+shakes, plus breakfast.\n926 Central Ave NW\nCoffee \[CenterDot] Quick bite \
+\[CenterDot] Drive-through\n\nNorthside Cafe\n3.9 \n (32) \[CenterDot] Cafe\n\
+3450 Gateway Dr\nTourists \[CenterDot] Coffee \[CenterDot] Quick bite\n\n\
+Roadhouse Cafe\n4.1 \n (27) \[CenterDot] Cafe\nLaid-back restaurant at \
+Simonson Travel Center offering American diner fare 24/7.\n4720 Gateway Dr\n\
+Tourists \[CenterDot] Coffee \[CenterDot] Quick bite\n\nDomino's Pizza\n3.8 \n\
+ (14) \[CenterDot] $ \[CenterDot] Pizza Delivery\nDelivery/carryout chain \
+offering a wide range of pizza, plus chicken & other sides.\n130 Gateway Dr \
+NE\n\nUp North Pizza Pub\n4.2 \n (36) \[CenterDot] Restaurant\n314 4th St NW\n\
+College students \[CenterDot] Casual \[CenterDot] Locals\n\nBig Sioux Cafe\n\
+No reviews \[CenterDot] Cafe\n4401 S 42nd St\nCoffee \[CenterDot] Casual \
+\[CenterDot] Locals\n\nUrban Stampede\n4.4 \n (51) \[CenterDot] $ \
+\[CenterDot] Coffee Shop\nEnduring hangout serving coffee drinks & baked \
+goods in a comfy space with art exhibitions.\n324 Kittson Ave\nCoffee \
+\[CenterDot] College students \[CenterDot] Great dessert\n\nDakota Food \
+Equipment\nNo reviews \[CenterDot] Restaurant Supply Store\n513 10th Ave N\n\
+Closed now\n\nValley Dairy Restaurant\n4.3 \n (3) \[CenterDot] Convenience \
+Store\n1401 S Washington St\n\nRamada Grand Forks\n4.0 \n (118) \[CenterDot] \
+Hotel\nUnfussy hotel featuring a restaurant & an indoor pool, plus free WiFi \
+& an airport shuttle.\n1205 N 43rd St\nHot tub \[CenterDot] Quiet \
+\[CenterDot] Casual\n\nCanad Inns Destination Center - Grand Forks\n3.9 \n \
+(158) \[CenterDot] Hotel\nLow-key lodging attached to an indoor water park, \
+plus a casino lounge & multiple dining options.\n1000 S 42nd St\nHot tub \
+\[CenterDot] Quiet \[CenterDot] Casual\n\nStarbucks\n4.2 \n (24) \[CenterDot] \
+$$ \[CenterDot] Coffee Shop\nSeattle-based coffeehouse chain known for its \
+signature roasts, light bites and WiFi availability.\n1217 S Washington St\n\
+Prepared foods \[CenterDot] Tourists \[CenterDot] Coffee\n\nSafari Market \
+Coffee Shop\n1.0 \n (1) \[CenterDot] Coffee Shop\n1020 S Washington St\n\
+Coffee \[CenterDot] Quick bite \[CenterDot] Great tea selection\nFood Dudes \
+Delivery\n3.0 \n (2) \[CenterDot] Delivery Restaurant\n\nBig Sioux Travel \
+Plaza\n3.1 \n (15) \[CenterDot] Convenience Store\n4401 32nd Ave S\nPrepared \
+foods \[CenterDot] Quick visit\n\nTravelodge Grand Forks\n3.1 \n (60) \
+\[CenterDot] Motel\nLow-key roadside lodging with an indoor pool, a sauna & \
+free continental breakfast.\n2100 S Washington St\nHot tub \[CenterDot] Quiet \
+\[CenterDot] Casual\n\nNorth Dakota Museum of Art\n4.0 \n (4) \[CenterDot] \
+Art Museum\n261 Centennial Dr\nClosed now\n\nCVB\n3.5 \n (4) \[CenterDot] \
+Convention Information Bureau\n4251 Gateway Dr\n\nAlbatross Indoor Golf Club\n\
+1 review \[CenterDot] Indoor Golf Course\n2950 10th Ave N\n\nLong Haul Saloon\
+\n4.5 \n (12) \[CenterDot] Night Club\n4720 Gateway Dr\nFood \[CenterDot] \
+Tourists \[CenterDot] Live music\n\nHilton Garden Inn Grand Forks-UND\n4.2 \n \
+(103) \[CenterDot] Hotel\nStraightforward hotel with an American restaurant & \
+indoor pool, plus free WiFi & parking.\n4301 James Ray Dr\nHot tub \
+\[CenterDot] Quiet \[CenterDot] Casual\n\nSleep Inn & Suites\n4.5 \n (40) \
+\[CenterDot] Hotel\nCasual hotel featuring an exercise room, a heated indoor \
+pool & a hot tub, plus free hot breakfast.\n1350 S 42nd St\n\nC'Mon Inn\n4.4 \
+\n (57) \[CenterDot] Hotel\nHotel with simple rooms (some with Jacuzzis) & a \
+garden courtyard with a pool, koi pond & waterfall.\n3051 32nd Ave S\nHot tub \
+\[CenterDot] Quiet \[CenterDot] Casual\>\""}], ";"}], "\n", "\n"}]], "Input",
+ CellChangeTimes->{{3.699126667055752*^9, 3.6991268513211765`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"liststringsplit", "=", 
+   RowBox[{"StringSplit", "[", 
+    RowBox[{"liststring", ",", "\"\<\\n\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"listofresturants", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"StringMatchQ", "[", 
+         RowBox[{
+          RowBox[{"liststringsplit", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], ",", "NumberString"}], "]"}], "||", 
+        RowBox[{"StringMatchQ", "[", 
+         RowBox[{
+          RowBox[{"liststringsplit", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], ",", 
+          RowBox[{"NumberString", "~~", "_"}]}], "]"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"liststringsplit", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", "-", "1"}], "]"}], "]"}], ",", 
+         RowBox[{"liststringsplit", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", 
+         RowBox[{"liststringsplit", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", "+", "1"}], "]"}], "]"}]}], "}"}], ",", "\"\<\>\""}], 
+      "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "[", "liststringsplit", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"listofresturantnames", "=", 
+   RowBox[{"DeleteMissing", "[", 
+    RowBox[{"listofresturants", "/.", 
+     RowBox[{"\"\<\>\"", "\[Rule]", " ", 
+      RowBox[{"Missing", "[", "]"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"listofresturantnames", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"FromCharacterCode", "@", 
+        RowBox[{"DeleteCases", "[", 
+         RowBox[{
+          RowBox[{"ToCharacterCode", "[", 
+           RowBox[{"#", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], "]"}], ",", 
+          RowBox[{"x_", "/;", 
+           RowBox[{"x", "\[Equal]", "62371"}]}]}], "]"}]}], ",", 
+       RowBox[{"ToExpression", "[", 
+        RowBox[{"#", "[", 
+         RowBox[{"[", "2", "]"}], "]"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"StringSplit", "[", 
+         RowBox[{
+          RowBox[{"#", "[", 
+           RowBox[{"[", "3", "]"}], "]"}], ",", "\"\<\[CenterDot]\>\""}], 
+         "]"}], "[", 
+        RowBox[{"[", 
+         RowBox[{"-", "1"}], "]"}], "]"}]}], "}"}], "&"}], "/@", 
+    "listofresturantnames"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"listofresturantnames", "=", 
+   RowBox[{"DeleteDuplicates", "[", 
+    RowBox[{"listofresturantnames", ",", 
+     RowBox[{
+      RowBox[{"SameQ", "[", 
+       RowBox[{
+        RowBox[{"#1", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", 
+        RowBox[{"#2", "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], "]"}], "&"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"listofresturantnames", "=", 
+    RowBox[{"Sort", "[", 
+     RowBox[{"listofresturantnames", ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"#1", "[", 
+         RowBox[{"[", "2", "]"}], "]"}], ">", 
+        RowBox[{"#2", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], "&"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Search", " ", "String", " ", "Goes", " ", "Here"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"str", "=", "\"\<Restaurant\>\""}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Search", " ", "String", " ", "Goes", " ", "Above"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"re", "=", 
+   RowBox[{"Cases", "[", 
+    RowBox[{"listofresturantnames", ",", 
+     RowBox[{"x_", "/;", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"StringMatchQ", "[", 
+         RowBox[{
+          RowBox[{"x", "[", 
+           RowBox[{"[", "3", "]"}], "]"}], ",", 
+          RowBox[{"\"\<*\>\"", "<>", 
+           RowBox[{"ToLowerCase", "@", "str"}], "<>", "\"\<*\>\""}]}], "]"}], 
+        "||", 
+        RowBox[{"StringMatchQ", "[", 
+         RowBox[{
+          RowBox[{"x", "[", 
+           RowBox[{"[", "3", "]"}], "]"}], ",", 
+          RowBox[{"\"\<*\>\"", "<>", 
+           RowBox[{"Capitalize", "@", "str"}], "<>", "\"\<*\>\""}]}], "]"}], "||", 
+        RowBox[{"StringMatchQ", "[", 
+         RowBox[{
+          RowBox[{"x", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ",", 
+          RowBox[{"\"\<*\>\"", "<>", 
+           RowBox[{"ToLowerCase", "@", "str"}], "<>", "\"\<*\>\""}]}], "]"}], 
+        "||", 
+        RowBox[{"StringMatchQ", "[", 
+         RowBox[{
+          RowBox[{"x", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ",", 
+          RowBox[{"\"\<*\>\"", "<>", 
+           RowBox[{"Capitalize", "@", "str"}], "<>", "\"\<*\>\""}]}], "]"}]}],
+        ")"}]}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"TableForm", "@", 
+  RowBox[{"Prepend", "[", 
+   RowBox[{"re", ",", 
+    RowBox[{"\"\<Found : \>\"", "<>", 
+     RowBox[{"ToString", "[", 
+      RowBox[{"Length", "@", "re"}], "]"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.6991268626233063`*^9, 3.6991268890459485`*^9}, {
+   3.6991269289679403`*^9, 3.6991269559506383`*^9}, {3.6991269914261856`*^9, 
+   3.6991269984508877`*^9}, {3.6991270681258545`*^9, 3.699127079237966*^9}, {
+   3.699127138304872*^9, 3.699127179979039*^9}, {3.699127265131626*^9, 
+   3.6991272983433046`*^9}, {3.69912732909123*^9, 3.6991273300031385`*^9}, {
+   3.699127370997039*^9, 3.6991274280753307`*^9}, {3.6991274802201157`*^9, 
+   3.6991275064384933`*^9}, {3.699127565346592*^9, 3.699127861738592*^9}, {
+   3.699127911063592*^9, 3.6991279486525917`*^9}, {3.699128014889592*^9, 
+   3.699128099108592*^9}, {3.6991282035834084`*^9, 3.699128263129362*^9}, {
+   3.699128311876236*^9, 3.6991283959996476`*^9}, {3.699128674059451*^9, 
+   3.6991286754275875`*^9}, {3.699129243216361*^9, 3.6991293343764763`*^9}, {
+   3.6991298725202847`*^9, 3.6991301094409747`*^9}, {3.6991308085998836`*^9, 
+   3.6991308193119545`*^9}, {3.699130870186042*^9, 3.699130874523475*^9}, {
+   3.6991309840384254`*^9, 3.6991310448015013`*^9}, {3.6991311364726677`*^9, 
+   3.699131194523472*^9}, 3.6991312275247717`*^9, {3.699131348389695*^9, 
+   3.699131360940695*^9}, {3.699131391107695*^9, 3.699131492299695*^9}, {
+   3.699131528306695*^9, 3.699131544712695*^9}, {3.6991315778626947`*^9, 
+   3.6991316116126947`*^9}, {3.699131682640695*^9, 3.699131731346695*^9}, {
+   3.699131767852695*^9, 3.699131850575695*^9}, {3.699131904556695*^9, 
+   3.6991319185796947`*^9}, {3.699584124239561*^9, 3.699584397756548*^9}, {
+   3.701371129084508*^9, 3.7013711513147326`*^9}, {3.7013711864313393`*^9, 
+   3.701371188506479*^9}, {3.7013712838046093`*^9, 3.7013713258492193`*^9}, {
+   3.710987757221651*^9, 3.710987783639353*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"Found : 41\"\>", "\<\"\"\>", "\<\"\"\>"},
+    {"\<\"Seasons Family Restaurant\"\>", "5.`", "\<\" Family Restaurant\"\>"},
+    {"\<\"STEERS SOMALI RESTAURANT\"\>", 
+     "4.8`", "\<\" African Restaurant\"\>"},
+    {"\<\"Rhombus Guys Brewing Company\"\>", "4.8`", "\<\" Restaurant\"\>"},
+    {"\<\"Scotty's Deli & Catering\"\>", "4.7`", "\<\" Restaurant\"\>"},
+    {"\<\"Toasted Frog\"\>", "4.5`", "\<\"Eclectic Restaurant\"\>"},
+    {"\<\"Casa Mexico Restaurant\"\>", "4.4`", "\<\" Restaurant\"\>"},
+    {"\<\"Red Pepper\"\>", "4.4`", "\<\"Restaurant\"\>"},
+    {"\<\"Sky's Restaurant\"\>", "4.4`", "\<\"Fine Dining Restaurant\"\>"},
+    {"\<\"Gramma Butterwick's Restaurant\"\>", 
+     "4.4`", "\<\"Breakfast Restaurant\"\>"},
+    {"\<\"Valley Dairy Restaurant\"\>", "4.3`", "\<\" Restaurant\"\>"},
+    {"\<\"Del's Coffee Shop\"\>", "4.3`", "\<\" Restaurant\"\>"},
+    {"\<\"Noodles and Company\"\>", "4.3`", "\<\" Restaurant\"\>"},
+    {"\<\"HuHot Mongolian Grill\"\>", "4.3`", "\<\" Restaurant\"\>"},
+    {"\<\"Pizza Ranch\"\>", "4.3`", "\<\" Buffet Restaurant\"\>"},
+    {"\<\"Up North Pizza Pub\"\>", "4.2`", "\<\" Restaurant\"\>"},
+    {"\<\"Magic Chop Stix\"\>", "4.2`", "\<\" Restaurant\"\>"},
+    {"\<\"Brick& Barley Bar and Restaurant\"\>", "4.2`", "\<\"Grill\"\>"},
+    {"\<\"DQ Grill & Chill Restaurant\"\>", "4.1`", "\<\" Fast Food\"\>"},
+    {"\<\"Panda Buffet\"\>", "4.`", "\<\" Restaurant\"\>"},
+    {"\<\"Deek's Pizza\"\>", "3.9`", "\<\" Restaurant\"\>"},
+    {"\<\"Tao Garden\"\>", "3.8`", "\<\" Restaurant\"\>"},
+    {"\<\"Whitey's\"\>", "3.8`", "\<\" Restaurant\"\>"},
+    {"\<\"Far East Buffet\"\>", "3.8`", "\<\" Restaurant\"\>"},
+    {"\<\"Grand Junction Grilled Subs\"\>", "3.8`", "\<\" Restaurant\"\>"},
+    {"\<\"Perkins Restaurant & Bakery\"\>", "3.8`", "\<\" Restaurant\"\>"},
+    {"\<\"Italian Moon Pizza& Mexican Food\"\>", "3.8`", "\<\"Restaurant\"\>"},
+    {"\<\"Mamma Maria's\"\>", "3.7`", "\<\" Restaurant\"\>"},
+    {"\<\"Wild Hog\"\>", "3.7`", "\<\" Restaurant\"\>"},
+    {"\<\"Taco John's\"\>", "3.6`", "\<\" Restaurant\"\>"},
+    {"\<\"Kon Nechi Wa's\"\>", "3.6`", "\<\" Restaurant\"\>"},
+    {"\<\"Mexican Village\"\>", "3.6`", "\<\" Restaurant\"\>"},
+    {"\<\"China Garden Restaurant\"\>", "3.6`", "\<\"Restaurant\"\>"},
+    {"\<\"Eagles Crest Grill\"\>", "3.5`", "\<\" Restaurant\"\>"},
+    {"\<\"Paradiso Mexican Restaurant Grand Forks\"\>", 
+     "3.5`", "\<\"Restaurant\"\>"},
+    {"\<\"Green Mill Restaurant& Bar\"\>", "3.4`", "\<\"Restaurant\"\>"},
+    {"\<\"IHOP\"\>", "3.2`", "\<\" Restaurant\"\>"},
+    {"\<\"Red Pepper East\"\>", "3.1`", "\<\" Latin American Restaurant\"\>"},
+    {"\<\"Food Dudes Delivery\"\>", "3.`", "\<\" Delivery Restaurant\"\>"},
+    {"\<\"Washington Cafe\"\>", "3.`", "\<\" Restaurant\"\>"},
+    {"\<\"Historic Kegs Drive-In\"\>", "2.9`", "\<\" Restaurant\"\>"},
+    {"\<\"Subway\"\>", "2.5`", "\<\" Restaurant\"\>"}
+   },
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}, "RowsIndexed" -> {}}],
+  TableForm[{
+   "Found : 41", {"Seasons Family Restaurant", 5., " Family Restaurant"}, {
+    "STEERS SOMALI RESTAURANT", 4.8, " African Restaurant"}, {
+    "Rhombus Guys Brewing Company", 4.8, " Restaurant"}, {
+    "Scotty's Deli & Catering", 4.7, " Restaurant"}, {
+    "Toasted Frog", 4.5, "Eclectic Restaurant"}, {
+    "Casa Mexico Restaurant", 4.4, " Restaurant"}, {
+    "Red Pepper", 4.4, "Restaurant"}, {
+    "Sky's Restaurant", 4.4, "Fine Dining Restaurant"}, {
+    "Gramma Butterwick's Restaurant", 4.4, "Breakfast Restaurant"}, {
+    "Valley Dairy Restaurant", 4.3, " Restaurant"}, {
+    "Del's Coffee Shop", 4.3, " Restaurant"}, {
+    "Noodles and Company", 4.3, " Restaurant"}, {
+    "HuHot Mongolian Grill", 4.3, " Restaurant"}, {
+    "Pizza Ranch", 4.3, " Buffet Restaurant"}, {
+    "Up North Pizza Pub", 4.2, " Restaurant"}, {
+    "Magic Chop Stix", 4.2, " Restaurant"}, {
+    "Brick& Barley Bar and Restaurant", 4.2, "Grill"}, {
+    "DQ Grill & Chill Restaurant", 4.1, " Fast Food"}, {
+    "Panda Buffet", 4., " Restaurant"}, {
+    "Deek's Pizza", 3.9, " Restaurant"}, {"Tao Garden", 3.8, " Restaurant"}, {
+    "Whitey's", 3.8, " Restaurant"}, {
+    "Far East Buffet", 3.8, " Restaurant"}, {
+    "Grand Junction Grilled Subs", 3.8, " Restaurant"}, {
+    "Perkins Restaurant & Bakery", 3.8, " Restaurant"}, {
+    "Italian Moon Pizza& Mexican Food", 3.8, "Restaurant"}, {
+    "Mamma Maria's", 3.7, " Restaurant"}, {"Wild Hog", 3.7, " Restaurant"}, {
+    "Taco John's", 3.6, " Restaurant"}, {
+    "Kon Nechi Wa's", 3.6, " Restaurant"}, {
+    "Mexican Village", 3.6, " Restaurant"}, {
+    "China Garden Restaurant", 3.6, "Restaurant"}, {
+    "Eagles Crest Grill", 3.5, " Restaurant"}, {
+    "Paradiso Mexican Restaurant Grand Forks", 3.5, "Restaurant"}, {
+    "Green Mill Restaurant& Bar", 3.4, "Restaurant"}, {
+    "IHOP", 3.2, " Restaurant"}, {
+    "Red Pepper East", 3.1, " Latin American Restaurant"}, {
+    "Food Dudes Delivery", 3., " Delivery Restaurant"}, {
+    "Washington Cafe", 3., " Restaurant"}, {
+    "Historic Kegs Drive-In", 2.9, " Restaurant"}, {
+    "Subway", 2.5, " Restaurant"}}]]], "Output",
+ CellChangeTimes->{
+  3.6995843980690613`*^9, 3.701371053225548*^9, {3.7013711311316576`*^9, 
+   3.701371151971012*^9}, 3.701371189070055*^9, {3.701371287133293*^9, 
+   3.7013713262616806`*^9}}]
+}, Open  ]]
+},
+WindowSize->{1280, 942},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"10.1 for Microsoft Windows (64-bit) (March 23, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 30809, 410, 19212, "Input"],
+Cell[CellGroupData[{
+Cell[31392, 434, 6728, 165, 352, "Input"],
+Cell[38123, 601, 5671, 101, 645, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
